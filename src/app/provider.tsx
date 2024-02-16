@@ -27,7 +27,7 @@ export const NextLayout = ({ children }: Props) => {
   return (
     <>
       <Header />
-      <main className="h-full w-screen">{children}</main>
+      <main className="mx-auto h-full lg:max-w-6xl">{children}</main>
     </>
   );
 };

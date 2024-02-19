@@ -18,4 +18,5 @@ model Post {
   content     String?
   createdAt   DateTime @default(now())
   category    String
+  tags        String[]
 }

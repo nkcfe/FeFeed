@@ -42,3 +42,35 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json(result, { status: 200 });
 }
+
+export async function PUT(req: NextRequest) {
+  const { id, image, title, description, content, category, selectedTags } =
+    await req.json();
+
+  const result = await prisma.post.update({
+    where: { id: Number(id) },
+    data: {
+      title: title,
+      coverImage: image,
+      description: description,
+      content: content,
+      category: category,
+      tags: selectedTags,
+    },
+  });
+
+  return NextResponse.json(result, { status: 200 });
+}
+
+export async function DELETE(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get('id');
+
+  const result = await prisma.post.delete({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  return NextResponse.json(result, { status: 200 });
+}

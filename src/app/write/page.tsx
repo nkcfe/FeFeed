@@ -52,9 +52,11 @@ const Write = () => {
         toast.error('파일 크기는 10MB를 넘을 수 없습니다.');
         return;
       }
+      const currentTime = new Date().toISOString();
+      const fileName = `${currentTime}_${file.name}`;
       const { data, error } = await supabase.storage
         .from('images')
-        .upload(file.name, file);
+        .upload(fileName, file);
 
       console.log('data', data);
 
@@ -64,7 +66,7 @@ const Write = () => {
       } else {
         const imageData = supabase.storage
           .from('images')
-          .getPublicUrl(file.name);
+          .getPublicUrl(fileName);
         setImage(imageData.data.publicUrl);
         toast.dismiss(toastId);
         toast.success('파일 업로드에 성공했습니다.');
@@ -171,9 +173,9 @@ const Write = () => {
         <Input
           ref={descriptionRef}
           placeholder="설명을 입력해주세요"
-          className="w-full text-center text-lg"
+          className="w-full text-center text-base text-gray-500"
         />
-        <CategorySelect selectCategory={selectCategory} />
+        <CategorySelect selectCategory={selectCategory} category={category} />
         <TagSelect
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}

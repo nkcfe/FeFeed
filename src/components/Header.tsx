@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
 import Button from './Button';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/utils/style';
 

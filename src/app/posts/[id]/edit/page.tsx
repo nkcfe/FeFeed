@@ -94,9 +94,11 @@ const Edit = (props: EditProps) => {
         toast.error('파일 크기는 10MB를 넘을 수 없습니다.');
         return;
       }
+      const currentTime = new Date().toISOString();
+      const fileName = `${currentTime}_${file.name}`;
       const { data, error } = await supabase.storage
         .from('images')
-        .upload(file.name, file);
+        .upload(fileName, file);
 
       console.log('data', data);
 
@@ -106,7 +108,7 @@ const Edit = (props: EditProps) => {
       } else {
         const imageData = supabase.storage
           .from('images')
-          .getPublicUrl(file.name);
+          .getPublicUrl(fileName);
         setImage(imageData.data.publicUrl);
         toast.dismiss(toastId);
         toast.success('파일 업로드에 성공했습니다.');
@@ -143,7 +145,8 @@ const Edit = (props: EditProps) => {
     }
 
     try {
-      const res = await axios.post('/api/posts', {
+      const res = await axios.put('/api/posts', {
+        ...data,
         image,
         title,
         description,
@@ -153,13 +156,13 @@ const Edit = (props: EditProps) => {
       });
 
       if (res.status === 200) {
-        toast.success('게시물 등록에 성공했습니다.');
+        toast.success('게시물 수정에 성공했습니다.');
         router.replace(`/posts/${res?.data?.id}`);
       } else {
-        toast.error('게시물 등록에 실패했습니다.');
+        toast.error('게시물 수정에 실패했습니다.');
       }
     } catch (e) {
-      toast.error('게시물 등록에 실패했습니다.');
+      toast.error('게시물 수정에 실패했습니다.');
     }
   };
 
@@ -194,10 +197,10 @@ const Edit = (props: EditProps) => {
         <Input
           ref={descriptionRef}
           placeholder="설명을 입력해주세요"
-          className="w-full text-center text-lg"
+          className="w-full text-center text-base text-gray-500"
           defaultValue={data?.description}
         />
-        <CategorySelect selectCategory={selectCategory} />
+        <CategorySelect selectCategory={selectCategory} category={category} />
         <TagSelect
           selectedTags={selectedTags}
           setSelectedTags={setSelectedTags}

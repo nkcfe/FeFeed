@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 interface TagSelectProps {
   selectedTags: string[];

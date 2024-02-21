@@ -7,6 +7,10 @@
   font-family: 'Wanted Sans', sans-serif;
 }
 
+.input {
+  font-family: 'Wanted Sans', sans-serif;
+}
+
 .tiptap {
   @apply bg-white;
 }

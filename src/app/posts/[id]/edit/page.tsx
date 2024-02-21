@@ -8,7 +8,7 @@ import StarterKit from '@tiptap/starter-kit';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import Focus from '@tiptap/extension-focus';
 import { useEditor } from '@tiptap/react';

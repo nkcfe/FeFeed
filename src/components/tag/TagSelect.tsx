@@ -23,7 +23,11 @@ const TagSelect = (props: TagSelectProps) => {
   });
 
   const selectTag = (category: string) => {
-    setWord(category);
+    if (!selectedTags.includes(category)) {
+      setSelectedTags((prev) => [...prev, category]);
+    }
+    setWord('');
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -37,7 +41,7 @@ const TagSelect = (props: TagSelectProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center justify-center">
       <div
         className="relative flex w-36 items-center justify-center rounded-xl bg-white px-4 py-2 shadow-md"
         ref={ref}
@@ -50,8 +54,7 @@ const TagSelect = (props: TagSelectProps) => {
           onChange={(e) => setWord(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              setSelectedTags((prev) => [...prev, word]);
-              setWord('');
+              selectTag(word);
             }
           }}
         />

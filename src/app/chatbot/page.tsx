@@ -3,6 +3,7 @@
 import IconButton from '@/components/IconButton';
 import React, {
   FormEvent,
+  MouseEvent,
   useCallback,
   useMemo,
   useRef,
@@ -71,7 +72,7 @@ const Search = () => {
     [isPending, messageParams, mutate],
   );
 
-  const handleReset = (e?: FormEvent<HTMLFormElement>) => {
+  const handleReset = (e?: MouseEvent<HTMLButtonElement>) => {
     e?.preventDefault();
     setMessageParams([]);
     localStorage.removeItem('messages');

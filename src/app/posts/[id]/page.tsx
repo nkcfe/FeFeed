@@ -10,7 +10,7 @@ import type { PostType } from '@/module/type';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { FaAngleDown } from 'react-icons/fa6';
 import { HiOutlineShare } from 'react-icons/hi';

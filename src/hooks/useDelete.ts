@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
 const fetchDelete = async (id: number) => {
@@ -13,9 +13,11 @@ const fetchDelete = async (id: number) => {
 
 export const useDelete = (id: number) => {
   const queryClient = useQueryClient();
-  const mutation = useMutation(fetchDelete, {
+
+  const mutation = useMutation({
+    mutationFn: () => fetchDelete(id),
     onSuccess: () => {
-      queryClient.invalidateQueries('posts');
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
       toast.success('게시물이 삭제되었습니다.');
     },
     onError: () => {
@@ -24,7 +26,7 @@ export const useDelete = (id: number) => {
   });
   return {
     deletePost: mutation.mutate,
-    isDeleteLoading: mutation.isLoading,
+    isDeleteLoading: mutation.isPaused,
     isDeleteSuccess: mutation.isSuccess,
   };
 };

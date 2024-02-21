@@ -6,7 +6,7 @@ import LoadingModal from '@/components/modal/LoadingModal';
 import { PostType } from '@/module/type';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
   const [isScrollDown, setIsScrollDown] = useState(false);

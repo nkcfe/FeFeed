@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
-import Button from './Button';
-import { useRouter } from 'next/navigation';
+import Button from '@/components/Button';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/utils/style';
 
@@ -16,8 +16,8 @@ const Header = (props: HeaderProps) => {
   return (
     <div
       className={cn(
-        'fixed top-0 z-20 w-full bg-white',
-        isScrollDown && 'bg-slate-800 shadow-md transition-all duration-300',
+        'sticky top-0 z-20 bg-white',
+        isScrollDown && 'shadow-sm transition-all duration-300',
       )}
     >
       <div
@@ -25,10 +25,7 @@ const Header = (props: HeaderProps) => {
           'mx-auto flex h-14 items-center justify-between lg:max-w-4xl',
         )}
       >
-        <Link
-          href="/"
-          className={cn('border-none', isScrollDown && 'text-white')}
-        >
+        <Link href="/" className="border-none">
           <div className="flex">
             <AiFillFire size={22} />
             <span className="font-bold">Fe</span>
@@ -38,7 +35,7 @@ const Header = (props: HeaderProps) => {
         <div className="flex gap-1">
           <div>
             <Button
-              variant={isScrollDown ? 'slate' : 'white'}
+              variant="white"
               weight="light"
               size="medium"
               onClick={() => router.push('/write')}
@@ -46,7 +43,7 @@ const Header = (props: HeaderProps) => {
               글 작성
             </Button>
             <Button
-              variant={isScrollDown ? 'slate' : 'white'}
+              variant="white"
               weight="light"
               size="medium"
               onClick={() => router.push('/chatbot')}

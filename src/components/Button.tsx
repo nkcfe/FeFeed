@@ -5,10 +5,11 @@ import React, { ButtonHTMLAttributes } from 'react';
 const ButtonVariants = cva('', {
   variants: {
     variant: {
-      blue: 'bg-blue-500 text-white shadow-md transition hover:bg-blue-400',
+      blue: 'rounded-lg bg-blue-100 text-black shadow-md transition hover:bg-blue-300',
       white:
-        'rounded-lg bg-white p-2 text-black transition hover:bg-gray-100 hover:text-blue-800',
-      gray: 'bg-gray-200 text-gray-500 transition hover:bg-gray-100',
+        'rounded-lg p-2 text-black transition hover:bg-gray-100 hover:text-blue-800',
+      gray: 'bg-gray-100 bg-opacity-70 text-black backdrop-blur-md transition hover:bg-gray-100',
+      slate: ' text-white transition  hover:text-blue-300',
     },
     shape: {
       primary: 'rounded-lg',
@@ -41,13 +42,17 @@ interface ButtonProps
     VariantProps<typeof ButtonVariants> {
   children: React.ReactNode;
   disabled?: boolean;
+  custom?: string; // 추가
 }
 
 const Button = (props: ButtonProps) => {
-  const { variant, shape, size, weight, children, disabled } = props;
+  const { variant, shape, size, weight, children, disabled, custom } = props;
   return (
     <button
-      className={cn(ButtonVariants({ variant, shape, size, weight, disabled }))}
+      className={cn(
+        ButtonVariants({ variant, shape, size, weight, disabled }),
+        custom,
+      )} // 수정
       {...props}
     >
       {children}

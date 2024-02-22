@@ -5,22 +5,57 @@ import PostCard from '@/components/home/PostCard';
 import LoadingModal from '@/components/modal/LoadingModal';
 import { PostType } from '@/module/type';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import Calendar from '@/components/Calendar';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import Introduce from '@/components/Introduce';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 
 const Home = () => {
   const [isScrollDown, setIsScrollDown] = useState(false);
-  const { data, isLoading } = useQuery({
+  const ref = useRef<HTMLDivElement>(null);
+  const pageRef = useIntersectionObserver(ref, {});
+  const isPageEnd = !!pageRef?.isIntersecting;
+
+  const {
+    data,
+    isError,
+    isLoading,
+    isFetching,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteQuery<any, unknown, any>({
     queryKey: ['posts'],
-    queryFn: async (): Promise<PostType[]> => {
-      const response = await axios.get('/api/posts');
-      return response.data;
+    queryFn: async ({ pageParam = 0 }) => {
+      const { data } = await axios.get(`/api/posts?page=${pageParam}`, {
+        params: { page: pageParam, limit: 10 },
+      });
+
+      return data;
     },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.data.length > 0 ? lastPage.page + 1 : undefined,
   });
+
+  const fetchNext = useCallback(async () => {
+    const res = await fetchNextPage();
+    if (res.isError) {
+      console.log(res.error);
+    }
+  }, [fetchNextPage]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 10) {
         setIsScrollDown(true);
       } else {
         setIsScrollDown(false);
@@ -32,16 +67,56 @@ const Home = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    let timer: NodeJS.Timeout | undefined;
+    if (isPageEnd && hasNextPage) {
+      timer = setTimeout(() => {
+        fetchNext();
+      }, 500);
+    }
+    return () => clearTimeout(timer);
+  }, [fetchNext, fetchNextPage, hasNextPage, isPageEnd]);
+
+  const { scrollYProgress } = useScroll();
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   if (isLoading) return <LoadingModal />;
 
   return (
     <>
       <Header isScrollDown={isScrollDown} />
-      <div className="mt-20 flex min-h-[calc(100vh-42px)] flex-col items-center justify-start gap-16">
-        {Array.isArray(data) &&
-          data?.map((post: any, index: number) => (
-            <PostCard key={index} post={post} />
-          ))}
+      <motion.div
+        className="fixed inset-x-0 top-14 z-20 h-2 origin-[0%] bg-slate-200"
+        style={{ scaleX }}
+      />
+      <div className="mt-16 flex justify-center pb-16">
+        <div className="relative flex w-full justify-center gap-2 lg:max-w-5xl">
+          <div className="grid w-3/4 grid-cols-2">
+            {data?.pages?.map((page: any, index: number) => (
+              <Fragment key={index}>
+                {page.data.map((post: PostType, i: number) => (
+                  <PostCard key={post.id} post={post} />
+                ))}
+              </Fragment>
+            ))}
+
+            <div className="mb-10 h-10 w-full touch-none" ref={ref} />
+          </div>
+
+          <div className="mt-10 w-1/4">
+            <div className="sticky top-20">
+              <Introduce />
+            </div>
+            <div className="sticky top-20 mt-10">
+              <Calendar />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

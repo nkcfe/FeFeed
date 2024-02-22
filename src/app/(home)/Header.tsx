@@ -16,8 +16,8 @@ const Header = (props: HeaderProps) => {
   return (
     <div
       className={cn(
-        'sticky top-0 z-20 bg-white',
-        isScrollDown && 'shadow-sm transition-all duration-300',
+        'fixed top-0 z-20 w-full bg-white',
+        isScrollDown && 'shadow-md transition-all duration-300',
       )}
     >
       <div

@@ -158,7 +158,7 @@ const Post = (props: PostProps) => {
                     variant="gray"
                     shape="primary"
                     size="medium"
-                    onClick={() => deletePost(id)}
+                    onClick={() => deletePost()}
                   >
                     <div className="flex items-center justify-center gap-1">
                       <AiOutlineDelete />

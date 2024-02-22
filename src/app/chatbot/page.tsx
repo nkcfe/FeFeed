@@ -21,6 +21,7 @@ import Header from '@/components/Header';
 import ChatBlank from '@/components/ChatBlank';
 import Typing from '@/components/Typing';
 import { toast } from 'react-toastify';
+import { PostType } from '@/module/type';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,6 +42,7 @@ const Search = () => {
       const res = await axios.post('/api/completions', {
         messages,
       });
+      console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -79,10 +81,26 @@ const Search = () => {
   };
 
   const messagePropsList = useMemo(() => {
-    return messageParams.filter(
-      (param): param is MessageProps =>
-        param.role === 'assistant' || param.role === 'user',
-    );
+    let posts: PostType[] = [];
+
+    const result = messageParams.reduce<MessageProps[]>((acc, cur) => {
+      if (cur.role === 'function' && cur.content) {
+        posts.push(JSON.parse(cur.content) as PostType);
+      }
+      if (cur.role === 'user') {
+        posts = [];
+        return [...acc, cur as MessageProps];
+      }
+
+      if (cur.role === 'assistant') {
+        const result = [...acc, { ...cur, posts: [...posts] } as MessageProps];
+        posts = [];
+        return result;
+      }
+      return acc;
+    }, []);
+
+    return result;
   }, [messageParams]);
 
   return (

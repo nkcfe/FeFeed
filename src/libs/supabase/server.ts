@@ -1,8 +1,9 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { cookies } from 'next/headers';
+import { cookies as getCookies } from 'next/headers';
 
 export const createClient = (
-  cookies: Partial<{
+  cookies?: ReturnType<typeof getCookies>,
+  legacyCookies?: Partial<{
     [key: string]: string;
   }>,
 ) => {
@@ -12,7 +13,7 @@ export const createClient = (
     {
       cookies: {
         get(name: string) {
-          return cookies[name];
+          return cookies?.get(name)?.value ?? legacyCookies?.[name];
         },
       },
     },

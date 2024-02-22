@@ -2,14 +2,18 @@ import { cn } from '@/utils/style';
 import React from 'react';
 import { TfiFaceSmile } from 'react-icons/tfi';
 import { GoHubot } from 'react-icons/go';
+import type { PostType } from '@/module/type';
+import ChatPostCard from './ChatPostCard';
 
 export type MessageProps = {
   content: string;
   role: 'user' | 'assistant';
+  posts?: PostType[];
 };
 
 const Message = (props: MessageProps) => {
-  const { content, role } = props;
+  const { content, role, posts } = props;
+  console.log(posts);
   return (
     <div className="">
       <div
@@ -34,6 +38,13 @@ const Message = (props: MessageProps) => {
         <div className={'flex flex-col items-start py-2'}>
           <div className={'whitespace-pre-wrap text-sm text-gray-600'}>
             {content}
+            {posts && posts.length > 0 && (
+              <div>
+                {posts.map((post) => (
+                  <ChatPostCard key={post.id} {...post} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

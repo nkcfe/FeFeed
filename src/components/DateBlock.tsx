@@ -19,12 +19,12 @@ const DateBlock = (props: DateBlockProps) => {
       <div
         key={date}
         className={cn(
-          'size-4 cursor-pointer rounded-md bg-gray-200 hover:bg-gray-300',
-          activityData.includes(date) && 'bg-blue-300 hover:bg-blue-500',
+          'size-4 cursor-pointer rounded-sm bg-gray-200 hover:bg-gray-300',
+          activityData.includes(date) && 'bg-green-400 hover:bg-green-600',
         )}
       />
       {isHover && (
-        <div className="absolute -right-10 top-7 z-10 rounded-xl bg-black px-2 py-1 text-xs text-white">
+        <div className="absolute -right-10 top-7 z-10 rounded-xl bg-gray-600 px-2 py-1 text-xs font-bold text-white">
           {date}
         </div>
       )}

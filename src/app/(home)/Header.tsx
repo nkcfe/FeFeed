@@ -1,30 +1,15 @@
 import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
 import Button from '@/components/Button';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { cn } from '@/utils/style';
 
-interface HeaderProps {
-  isScrollDown?: boolean;
-}
-
-const Header = (props: HeaderProps) => {
-  const { isScrollDown } = props;
+const Header = () => {
   const router = useRouter();
 
   return (
-    <div
-      className={cn(
-        'fixed top-0 z-20 w-full bg-white',
-        isScrollDown && 'shadow-md transition-all duration-300',
-      )}
-    >
-      <div
-        className={cn(
-          'mx-auto flex h-14 items-center justify-between lg:max-w-4xl',
-        )}
-      >
+    <div className="fixed top-0 z-30 w-full bg-white/40 backdrop-blur-lg">
+      <div className="mx-auto flex h-14 items-center justify-between lg:max-w-4xl">
         <Link href="/" className="border-none">
           <div className="flex">
             <AiFillFire size={22} />

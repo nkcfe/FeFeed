@@ -16,7 +16,7 @@ const PostCard = (props: PostCardProps) => {
 
   return (
     <div
-      className="group mt-10 flex w-[350px] cursor-pointer flex-col items-center justify-center"
+      className="group mt-10 flex cursor-pointer flex-col items-center justify-center md:w-[300px] lg:w-[400px]"
       onClick={() => router.push(`/posts/${post.id}`)}
     >
       <Image
@@ -24,16 +24,15 @@ const PostCard = (props: PostCardProps) => {
         alt="cover"
         width={600}
         height={250}
-        className="inset-1 h-[200px] w-full rounded-xl object-cover shadow-md transition duration-300 group-hover:translate-y-[-10px] group-hover:shadow-2xl"
+        className="inset-1 w-full rounded-3xl object-cover shadow-md transition duration-300 group-hover:translate-y-[-10px] group-hover:shadow-2xl md:h-[300px] lg:h-[400px]"
       />
       <div className="mt-6 flex w-full flex-col items-start gap-2 transition duration-300 group-hover:text-blue-600">
-        <div className="rounded-md bg-gray-100 px-1 py-0.5 text-sm text-gray-600">
+        <div className="rounded-xl bg-gray-600 px-2 py-0.5 text-xs text-white">
           {post.category}
         </div>
-        <div className="text-2xl font-semibold">{post.title}</div>
-        <div className="text-sm text-gray-600">{post.description}</div>
-        <div className="text-sm text-gray-400">
-          {format(new Date(post.createdAt), 'yyyy.MM.dd')}
+        <div className="font-semibold md:text-lg lg:text-2xl">{post.title}</div>
+        <div className="text-gray-500 md:text-xs lg:text-sm">
+          {format(new Date(post.createdAt), 'yyyy년 MM월 dd일')}
         </div>
       </div>
     </div>

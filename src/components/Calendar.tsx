@@ -30,11 +30,9 @@ const Calendar = () => {
   }, [dates, isSuccess]);
 
   useEffect(() => {
-    // 캘린더 생성
-    setCalendar(createCalendar(year)); // 예시로 2024년을 사용
+    setCalendar(createCalendar(year));
   }, [year]);
 
-  // GitHub 활동 데이터를 기반으로 월별 캘린더를 생성하는 함수
   function createCalendar(year: number) {
     const calendar = [];
 
@@ -63,15 +61,15 @@ const Calendar = () => {
   };
 
   return (
-    <div className="flex flex-col rounded-xl bg-neutral-100 p-3">
-      <div className="flex items-center justify-center">
+    <div className="flex flex-col rounded-xl bg-neutral-100/80 p-6 md:w-[650px] lg:w-[850px]">
+      <div className="flex items-center justify-start">
         <IconButton
           Icon={IoIosArrowDropleftCircle}
           label="left"
           iconClassName="hover:text-blue-400 transition"
           onClick={handlePrevYear}
         />
-        <div className="font-bold">{year}</div>
+        <div className="text-2xl font-bold">{year}</div>
         <IconButton
           Icon={IoIosArrowDroprightCircle}
           label="left"
@@ -79,7 +77,7 @@ const Calendar = () => {
           onClick={handleNextYear}
         />
       </div>
-      <div className="mt-2 grid grid-cols-12 gap-1">
+      <div className="mt-2 grid gap-2 md:grid-cols-[repeat(28,minmax(0,1fr))] lg:grid-cols-[repeat(38,minmax(0,1fr))]">
         {calendar.map((month) =>
           month.map((date) => (
             <DateBlock key={date} date={date} activityData={activityData} />

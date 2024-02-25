@@ -15,11 +15,11 @@ import { TbHttpDelete } from 'react-icons/tb';
 import { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import Message, { MessageProps } from '@/components/Message';
+import Message, { MessageProps } from '@/components/chat/Message';
 import Input from '@/components/Input';
-import Header from '@/components/Header';
-import ChatBlank from '@/components/ChatBlank';
-import Typing from '@/components/Typing';
+import Header from '@/components/post/Header';
+import ChatBlank from '@/components/chat/ChatBlank';
+import Typing from '@/components/chat/Typing';
 import { toast } from 'react-toastify';
 import { PostType } from '@/module/type';
 
@@ -28,9 +28,11 @@ const Search = () => {
   const [messageParams, setMessageParams] = useState<
     ChatCompletionMessageParam[]
   >(() => {
-    const existingMessages = localStorage.getItem('messages');
-    if (!existingMessages) return [];
-    return JSON.parse(existingMessages);
+    if (typeof window !== 'undefined') {
+      const existingMessages = localStorage.getItem('messages');
+      if (!existingMessages) return [];
+      return JSON.parse(existingMessages);
+    }
   });
 
   const { mutate, isPending } = useMutation<
@@ -81,6 +83,10 @@ const Search = () => {
   };
 
   const messagePropsList = useMemo(() => {
+    if (!Array.isArray(messageParams)) {
+      return [];
+    }
+
     let posts: PostType[] = [];
 
     const result = messageParams.reduce<MessageProps[]>((acc, cur) => {

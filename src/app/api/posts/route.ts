@@ -2,23 +2,42 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import prisma from '@/libs/prismadb';
 
-
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get('id');
+  const page = searchParams.get('page') as string;
+  const limit = searchParams.get('limit') as string;
+  const category = searchParams.get('category') as string;
 
-  if (id) {
-    const post = await prisma.post.findUnique({
+  if (page) {
+    const count = await prisma.post.count();
+    const skipPage = parseInt(page) - 1;
+    const posts = await prisma.post.findMany({
+      take: parseInt(limit),
+      skip: skipPage * parseInt(limit),
+      orderBy: {
+        createdAt: 'desc',
+      },
       where: {
-        id: Number(id),
+        category: category && category === '전체' ? {} : { contains: category },
       },
     });
 
-    return NextResponse.json(post);
+    return NextResponse.json(
+      {
+        page: parseInt(page),
+        data: posts,
+        totalCount: count,
+        totalPage: Math.ceil(count / Number(limit)),
+      },
+      {
+        status: 200,
+      },
+    );
   } else {
-    const post = await prisma.post.findMany({
-      orderBy: {
-        createdAt: 'desc',
+    const post = await prisma.post.findUnique({
+      where: {
+        id: Number(id),
       },
     });
 

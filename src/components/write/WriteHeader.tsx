@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button';
+import Button from '../share/Button';
 import { useRouter } from 'next/navigation';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 

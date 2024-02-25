@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/components/Button';
+import Button from '@/components/share/Button';
 import LoadingModal from '@/components/modal/LoadingModal';
 
 import axios from 'axios';
@@ -16,7 +16,7 @@ import { FaAngleDown } from 'react-icons/fa6';
 import { HiOutlineShare } from 'react-icons/hi';
 import { FiEdit2 } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
-import Header from '@/components/Header';
+import Header from '@/components/post/Header';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { motion, useScroll, useSpring } from 'framer-motion';
@@ -128,7 +128,7 @@ const Post = (props: PostProps) => {
               </div>
               <div className="h-24 " ref={bodyRef} />
             </div>
-            <div className="mx-auto lg:max-w-4xl">
+            <div className="mx-auto w-full lg:max-w-4xl">
               <div dangerouslySetInnerHTML={{ __html: data?.content ?? '' }} />
               <div className="flex h-52 w-full items-end justify-between bg-white">
                 <Button
@@ -158,7 +158,7 @@ const Post = (props: PostProps) => {
                     variant="gray"
                     shape="primary"
                     size="medium"
-                    onClick={() => deletePost(id)}
+                    onClick={() => deletePost()}
                   >
                     <div className="flex items-center justify-center gap-1">
                       <AiOutlineDelete />

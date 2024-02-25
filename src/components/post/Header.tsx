@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
-import Button from './Button';
+import Button from '../share/Button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/utils/style';
@@ -22,7 +22,7 @@ const Header = (props: HeaderProps) => {
     >
       <div
         className={cn(
-          'mx-auto flex h-14 items-center justify-between lg:max-w-4xl',
+          'mx-auto flex h-14 items-center justify-between lg:max-w-6xl',
         )}
       >
         <Link

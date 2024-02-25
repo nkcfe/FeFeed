@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useState } from 'react';
 
-import Input from '@/components/Input';
+import Input from '@/components/share/Input';
 import Button from '@/components/share/Button';
 import Tiptap from '@/components/share/editor/Editor';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import IconButton from '@/components/IconButton';
+import IconButton from '@/components/share/IconButton';
 import React, {
   FormEvent,
   MouseEvent,
@@ -16,7 +16,7 @@ import { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import Message, { MessageProps } from '@/components/chat/Message';
-import Input from '@/components/Input';
+import Input from '@/components/share/Input';
 import Header from '@/components/post/Header';
 import ChatBlank from '@/components/chat/ChatBlank';
 import Typing from '@/components/chat/Typing';

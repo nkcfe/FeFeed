@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import IconButton from '../IconButton';
+import IconButton from '../share/IconButton';
 import { IoIosArrowDropleftCircle } from 'react-icons/io';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { useQuery } from '@tanstack/react-query';

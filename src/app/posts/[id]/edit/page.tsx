@@ -15,7 +15,7 @@ import { useEditor } from '@tiptap/react';
 import WriteHeader from '@/components/write/WriteHeader';
 import Image from 'next/image';
 import Button from '@/components/share/Button';
-import Input from '@/components/Input';
+import Input from '@/components/share/Input';
 import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
 import Tiptap from '@/components/share/editor/Editor';

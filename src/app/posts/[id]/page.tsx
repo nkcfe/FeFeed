@@ -21,6 +21,9 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { useDelete } from '@/hooks/useDelete';
+import { createClient } from '@/libs/supabase/client';
+
+const supabase = createClient();
 
 interface PostProps {
   params: { id: number };
@@ -28,6 +31,7 @@ interface PostProps {
 
 const Post = (props: PostProps) => {
   const { id } = props.params;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [isScrollDown, setIsScrollDown] = useState(false);
 
@@ -89,6 +93,15 @@ const Post = (props: PostProps) => {
     }
   }, [isDeleteSuccess, router]);
 
+  useEffect(() => {
+    // async 함수는 Promsie를 반환하기 때문에 useEffect 내부에서 사용할 수 없다.
+    // 따라서 즉시 실행 함수로 감싸주어야 한다.
+    (async () => {
+      const user = await supabase.auth.getUser();
+      setIsAuthenticated(!!user.data.user);
+    })();
+  }, []);
+
   if (isLoading) return <LoadingModal />;
 
   return (
@@ -142,30 +155,32 @@ const Post = (props: PostProps) => {
                     공유
                   </div>
                 </Button>
-                <div className="flex gap-2">
-                  <Button
-                    variant="gray"
-                    shape="primary"
-                    size="medium"
-                    onClick={handleEdit}
-                  >
-                    <div className="flex items-center justify-center gap-1">
-                      <FiEdit2 />
-                      수정
-                    </div>
-                  </Button>
-                  <Button
-                    variant="gray"
-                    shape="primary"
-                    size="medium"
-                    onClick={() => deletePost()}
-                  >
-                    <div className="flex items-center justify-center gap-1">
-                      <AiOutlineDelete />
-                      삭제
-                    </div>
-                  </Button>
-                </div>
+                {isAuthenticated && (
+                  <div className="flex gap-2">
+                    <Button
+                      variant="gray"
+                      shape="primary"
+                      size="medium"
+                      onClick={handleEdit}
+                    >
+                      <div className="flex items-center justify-center gap-1">
+                        <FiEdit2 />
+                        수정
+                      </div>
+                    </Button>
+                    <Button
+                      variant="gray"
+                      shape="primary"
+                      size="medium"
+                      onClick={() => deletePost()}
+                    >
+                      <div className="flex items-center justify-center gap-1">
+                        <AiOutlineDelete />
+                        삭제
+                      </div>
+                    </Button>
+                  </div>
+                )}
               </div>
               <hr className="mb-12 mt-6" />
             </div>

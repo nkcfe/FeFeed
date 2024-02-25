@@ -2,8 +2,8 @@
 import React, { useRef, useState } from 'react';
 
 import Input from '@/components/Input';
-import Button from '@/components/Button';
-import Tiptap from '@/components/editor/Editor';
+import Button from '@/components/share/Button';
+import Tiptap from '@/components/share/editor/Editor';
 
 import Image from 'next/image';
 
@@ -15,9 +15,10 @@ import { createClient } from '@/libs/supabase/client';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import CategorySelect from '@/components/category/CategorySelect';
+import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
-import Header from '@/components/WriteHeader';
+import Header from '@/components/write/WriteHeader';
+import { Image as TiptapImage } from '@tiptap/extension-image';
 
 const supabase = createClient();
 
@@ -79,6 +80,7 @@ const Write = () => {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      TiptapImage,
       Placeholder.configure({
         placeholder: '텍스트를 선택해 에디터를 사용해보세요.',
         showOnlyCurrent: false,
@@ -148,11 +150,11 @@ const Write = () => {
       <Header handleSubmit={handleSubmit} />
       <div className="relative mx-auto lg:max-w-4xl">
         <Image
-          src={image ? image : '/strolling.png'}
+          src={image ? image : '/default.jpg'}
           alt="image"
           width={600}
           height={300}
-          className="h-[300px] w-full bg-red-100 object-cover shadow-sm"
+          className="h-[300px] w-full object-cover shadow-sm"
         />
         <Button
           variant="gray"
@@ -164,7 +166,7 @@ const Write = () => {
           이미지 변경
         </Button>
       </div>
-      <div className="mx-auto mt-10 flex flex-col items-center justify-center gap-4 lg:max-w-2xl">
+      <div className="mx-auto mt-10 flex flex-col items-center justify-center gap-4 lg:max-w-4xl">
         <Input
           ref={titleRef}
           placeholder="제목을 입력해주세요"

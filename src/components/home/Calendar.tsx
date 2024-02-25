@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import IconButton from './IconButton';
+import IconButton from '../IconButton';
 import { IoIosArrowDropleftCircle } from 'react-icons/io';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import { useQuery } from '@tanstack/react-query';
@@ -61,15 +61,15 @@ const Calendar = () => {
   };
 
   return (
-    <div className="flex flex-col rounded-xl bg-neutral-100/80 p-6 md:w-[650px] lg:w-[850px]">
-      <div className="flex items-center justify-start">
+    <div className="flex w-96 flex-col rounded-xl p-6">
+      <div className="flex items-center justify-center">
         <IconButton
           Icon={IoIosArrowDropleftCircle}
           label="left"
           iconClassName="hover:text-blue-400 transition"
           onClick={handlePrevYear}
         />
-        <div className="text-2xl font-bold">{year}</div>
+        <div className="text-lg font-bold">{year}</div>
         <IconButton
           Icon={IoIosArrowDroprightCircle}
           label="left"
@@ -77,7 +77,7 @@ const Calendar = () => {
           onClick={handleNextYear}
         />
       </div>
-      <div className="mt-2 grid gap-2 md:grid-cols-[repeat(28,minmax(0,1fr))] lg:grid-cols-[repeat(38,minmax(0,1fr))]">
+      <div className="mt-2 grid grid-cols-[repeat(26,minmax(0,1fr))] gap-1">
         {calendar.map((month) =>
           month.map((date) => (
             <DateBlock key={date} date={date} activityData={activityData} />

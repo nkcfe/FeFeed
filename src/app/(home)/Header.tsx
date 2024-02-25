@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
-import Button from '@/components/Button';
+import Button from '@/components/share/Button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -8,11 +8,11 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div className="fixed top-0 z-30 w-full bg-white/40 backdrop-blur-lg">
-      <div className="mx-auto flex h-14 items-center justify-between lg:max-w-4xl">
+    <div className="fixed top-0 z-30 w-screen bg-white/50 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 items-center justify-between p-6 text-lg lg:max-w-6xl">
         <Link href="/" className="border-none">
-          <div className="flex">
-            <AiFillFire size={22} />
+          <div className="flex items-center">
+            <AiFillFire size={24} />
             <span className="font-bold">Fe</span>
             <span>Feed</span>
           </div>

@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
   const id = searchParams.get('id');
   const page = searchParams.get('page') as string;
   const limit = searchParams.get('limit') as string;
+  const category = searchParams.get('category') as string;
 
   if (page) {
     const count = await prisma.post.count();
@@ -15,7 +16,10 @@ export async function GET(req: NextRequest) {
       take: parseInt(limit),
       skip: skipPage * parseInt(limit),
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
+      },
+      where: {
+        category: category && category === '전체' ? {} : { contains: category },
       },
     });
 

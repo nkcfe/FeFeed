@@ -12,13 +12,15 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import Focus from '@tiptap/extension-focus';
 import { useEditor } from '@tiptap/react';
-import WriteHeader from '@/components/WriteHeader';
+import WriteHeader from '@/components/write/WriteHeader';
 import Image from 'next/image';
-import Button from '@/components/Button';
+import Button from '@/components/share/Button';
 import Input from '@/components/Input';
-import CategorySelect from '@/components/category/CategorySelect';
+import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
-import Tiptap from '@/components/editor/Editor';
+import Tiptap from '@/components/share/editor/Editor';
+import { Image as TiptapImage } from '@tiptap/extension-image';
+
 interface EditProps {
   params: { id: number };
 }
@@ -52,6 +54,7 @@ const Edit = (props: EditProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      TiptapImage,
       Placeholder.configure({
         placeholder: '텍스트를 선택해 에디터를 사용해보세요.',
         showOnlyCurrent: false,
@@ -187,7 +190,7 @@ const Edit = (props: EditProps) => {
           이미지 변경
         </Button>
       </div>
-      <div className="mx-auto mt-10 flex flex-col items-center justify-center gap-4 lg:max-w-2xl">
+      <div className="mx-auto mt-10 flex flex-col items-center justify-center gap-4 lg:max-w-4xl">
         <Input
           ref={titleRef}
           placeholder="제목을 입력해주세요"

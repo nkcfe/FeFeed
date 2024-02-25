@@ -21,7 +21,7 @@ const Tiptap = (props: TiptapProps) => {
 
   return (
     <>
-      <div className="min-h-full w-full">
+      <div className="min-h-full w-full pb-64">
         <EditorContent editor={editor} />
         {editor && (
           <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>

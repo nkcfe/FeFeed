@@ -16,7 +16,6 @@ const Header = () => {
     // 따라서 즉시 실행 함수로 감싸주어야 한다.
     (async () => {
       const user = await supabase.auth.getUser();
-      console.log(user);
       setIsAuthenticated(!!user.data.user);
     })();
   }, []);

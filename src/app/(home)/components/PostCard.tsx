@@ -29,6 +29,7 @@ const PostCard = (props: PostCardProps) => {
           src={post.coverImage}
           alt="cover"
           fill
+          sizes="100% 100%"
           className="object-cover shadow-inner transition duration-300 group-hover:scale-105"
         />
       </div>

@@ -1,14 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.2/packages/wanted-sans/fonts/webfonts/static/complete/WantedSans.min.css');
 
 * {
-  font-family: 'Wanted Sans', sans-serif;
+  font-family: var(--font-overpass);
 }
 
 .input {
-  font-family: 'Wanted Sans', sans-serif;
+  font-family: var(--font-overpass);
 }
 
 .tiptap {

@@ -15,11 +15,11 @@ import { TbHttpDelete } from 'react-icons/tb';
 import { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import Message, { MessageProps } from '@/components/chat/Message';
+import Message, { MessageProps } from '@/app/chatbot/components/Message';
 import Input from '@/components/share/Input';
-import Header from '@/components/post/Header';
-import ChatBlank from '@/components/chat/ChatBlank';
-import Typing from '@/components/chat/Typing';
+import Header from '@/app/posts/components/Header';
+import ChatBlank from '@/app/chatbot/components/ChatBlank';
+import Typing from '@/app/chatbot/components/Typing';
 import { toast } from 'react-toastify';
 import { PostType } from '@/module/type';
 
@@ -147,6 +147,7 @@ const Search = () => {
           <IconButton
             Icon={TbHttpDelete}
             onClick={(e) => handleReset(e)}
+            type="reset"
             label="search"
             className="m-1 rounded-xl bg-neutral-900 text-white transition hover:bg-neutral-700"
           />

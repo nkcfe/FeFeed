@@ -60,6 +60,7 @@ const CategorySelect = (props: CategorySelectProps) => {
       ) : (
         <input
           placeholder="카테고리"
+          data-cy="category-input"
           ref={inputRef}
           className="w-28 text-sm outline-none"
           onFocus={() => setIsOpen(true)}

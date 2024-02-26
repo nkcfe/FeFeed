@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiFillFire } from 'react-icons/ai';
-import Button from '../share/Button';
+import Button from '../../../components/share/Button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/utils/style';

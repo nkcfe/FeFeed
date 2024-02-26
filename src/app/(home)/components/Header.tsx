@@ -48,6 +48,7 @@ const Header = () => {
               variant="white"
               weight="light"
               size="medium"
+              custom='data-cy="chatbot"'
               onClick={() => router.push('/chatbot')}
             >
               챗봇

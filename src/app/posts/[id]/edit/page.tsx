@@ -12,7 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import Focus from '@tiptap/extension-focus';
 import { useEditor } from '@tiptap/react';
-import WriteHeader from '@/components/write/WriteHeader';
+import WriteHeader from '@/app/write/components/WriteHeader';
 import Image from 'next/image';
 import Button from '@/components/share/Button';
 import Input from '@/components/share/Input';

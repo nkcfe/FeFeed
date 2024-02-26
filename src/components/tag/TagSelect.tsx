@@ -48,6 +48,7 @@ const TagSelect = (props: TagSelectProps) => {
       >
         <input
           placeholder="태그명"
+          data-cy="tag-input"
           className="w-24 text-sm outline-none"
           onFocus={() => setIsOpen(true)}
           value={word}

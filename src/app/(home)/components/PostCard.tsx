@@ -1,6 +1,7 @@
 'use client';
 
 import type { PostType } from '@/module/type';
+import { cn } from '@/utils/style';
 import { format } from 'date-fns/format';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -16,10 +17,14 @@ const PostCard = (props: PostCardProps) => {
 
   return (
     <div
-      className="group mt-10 flex cursor-pointer flex-col items-center justify-center"
+      // eslint-disable-next-line tailwindcss/no-custom-classname
+      className={cn(
+        'group mt-10 flex cursor-pointer flex-col items-center justify-center',
+      )}
+      data-cy="post-card"
       onClick={() => router.push(`/posts/${post.id}`)}
     >
-      <div className="relative h-[250px] w-[350px] overflow-hidden rounded-xl">
+      <div className="relative h-[200px] w-[300px] overflow-hidden rounded-xl lg:h-[250px] lg:w-[350px]">
         <Image
           src={post.coverImage}
           alt="cover"

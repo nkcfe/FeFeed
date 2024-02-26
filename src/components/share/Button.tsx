@@ -42,11 +42,13 @@ interface ButtonProps
     VariantProps<typeof ButtonVariants> {
   children: React.ReactNode;
   disabled?: boolean;
-  custom?: string; // 추가
+  custom?: string;
+  label?: string;
 }
 
 const Button = (props: ButtonProps) => {
-  const { variant, shape, size, weight, children, disabled, custom } = props;
+  const { variant, shape, size, weight, children, disabled, custom, label } =
+    props;
   return (
     <button
       className={cn(

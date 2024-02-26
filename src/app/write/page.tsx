@@ -17,7 +17,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
-import Header from '@/components/write/WriteHeader';
+import Header from '@/app/write/components/WriteHeader';
 import { Image as TiptapImage } from '@tiptap/extension-image';
 
 const supabase = createClient();
@@ -26,7 +26,9 @@ const Write = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
 
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string>(
+    'https://saryetgujpylhqlvyyek.supabase.co/storage/v1/object/public/images/dylan-nolte-SH_IjrKwG8c-unsplash.jpg',
+  );
   const [category, setCategory] = useState<string>('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
@@ -150,7 +152,7 @@ const Write = () => {
       <Header handleSubmit={handleSubmit} />
       <div className="relative mx-auto lg:max-w-4xl">
         <Image
-          src={image ? image : '/default.jpg'}
+          src={image}
           alt="image"
           width={600}
           height={300}

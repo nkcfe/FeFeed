@@ -1,7 +1,7 @@
 'use client';
 
-import Header from './Header';
-import PostCard from '@/components/home/PostCard';
+import Header from './components/Header';
+import PostCard from '@/app/(home)/components/PostCard';
 import LoadingModal from '@/components/modal/LoadingModal';
 import { PostType } from '@/module/type';
 import axios from 'axios';
@@ -16,7 +16,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import Image from 'next/image';
-import Calendar from '@/components/home/Calendar';
+import Calendar from '@/app/(home)/components/Calendar';
 import { cn } from '@/utils/style';
 
 const Home = () => {
@@ -103,12 +103,12 @@ const Home = () => {
         <Image
           src="/banner.png"
           alt="banner_img"
-          layout="fill"
-          objectFit="cover"
+          fill
+          className="object-cover"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/50 backdrop-blur-2xl">
           <div className="text-xl font-bold">Never, Never, Never</div>
-          <div className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-3xl font-bold text-transparent">
+          <div className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-3xl font-extrabold text-transparent">
             Never give up
           </div>
           <Calendar />
@@ -119,6 +119,7 @@ const Home = () => {
                   'cursor-pointer rounded-2xl border px-4 py-1 font-bold transition hover:bg-gray-300',
                   selectedCategory === category && 'border-blue-500',
                 )}
+                data-cy='category'
                 onClick={() => handleSelectCategory(category)}
                 key={category}
               >
@@ -131,7 +132,7 @@ const Home = () => {
 
       <div className="mt-16 flex justify-center pb-16">
         <div className="relative flex w-full justify-center gap-1 md:max-w-2xl lg:max-w-6xl">
-          <div className="grid grid-cols-3 justify-center gap-10">
+          <div className="grid justify-center gap-10 md:grid-cols-2 lg:grid-cols-3">
             {data?.pages?.map((page: any, index: number) => (
               <Fragment key={index}>
                 {page.data.map((post: PostType, i: number) => (

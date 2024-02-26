@@ -21,6 +21,7 @@ const Message = (props: MessageProps) => {
           'container mx-auto flex items-start gap-1 rounded-3xl px-3 py-2 lg:gap-4',
           role === 'assistant' ? 'bg-[#F0FAF9]' : 'bg-gray-100',
         )}
+        data-cy="message"
       >
         {role === 'user' ? (
           <>

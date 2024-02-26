@@ -16,7 +16,7 @@ import { FaAngleDown } from 'react-icons/fa6';
 import { HiOutlineShare } from 'react-icons/hi';
 import { FiEdit2 } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
-import Header from '@/components/post/Header';
+import Header from '@/app/posts/components/Header';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { motion, useScroll, useSpring } from 'framer-motion';

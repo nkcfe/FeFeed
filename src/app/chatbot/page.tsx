@@ -17,11 +17,11 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import Message, { MessageProps } from '@/app/chatbot/components/Message';
 import Input from '@/components/share/Input';
-import Header from '@/app/posts/components/Header';
 import ChatBlank from '@/app/chatbot/components/ChatBlank';
 import Typing from '@/app/chatbot/components/Typing';
 import { toast } from 'react-toastify';
 import { PostType } from '@/module/type';
+import Header from '../(home)/components/Header';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);

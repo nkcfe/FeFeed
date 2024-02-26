@@ -1,0 +1,24 @@
+name: End-to-end tests
+on: 
+  pull_request: 
+    branches:
+      - main
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: yarn build
+          start: yarn start
+          wait-on: 'http://localhost:3000'
+        env:
+          DATABASE_URL: postgres://postgres.saryetgujpylhqlvyyek:AOi5ZGggu63PDKKF@aws-0-ap-northeast-2.pooler.supabase.com:5432/postgres
+          NEXT_PUBLIC_SUPABASE_URL: https://saryetgujpylhqlvyyek.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhcnlldGd1anB5bGhxbHZ5eWVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDczMjA1NzAsImV4cCI6MjAyMjg5NjU3MH0.lPyNw5X68GurD6_xKwAQrT0f8L76BMP3WfCRmcZ2Bwo
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY}}

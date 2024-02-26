@@ -104,6 +104,8 @@ const Home = () => {
           src="/banner.png"
           alt="banner_img"
           fill
+          sizes="(min-width: 640px) 100vw, 100vw"
+          priority
           className="object-cover"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/50 backdrop-blur-2xl">
@@ -119,7 +121,7 @@ const Home = () => {
                   'cursor-pointer rounded-2xl border px-4 py-1 font-bold transition hover:bg-gray-300',
                   selectedCategory === category && 'border-blue-500',
                 )}
-                data-cy='category'
+                data-cy="category"
                 onClick={() => handleSelectCategory(category)}
                 key={category}
               >

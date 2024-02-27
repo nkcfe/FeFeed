@@ -17,7 +17,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
-import Header from '@/app/write/components/WriteHeader';
+import Header from '../../components/share/Header';
 import { Image as TiptapImage } from '@tiptap/extension-image';
 
 const supabase = createClient();
@@ -149,7 +149,7 @@ const Write = () => {
 
   return (
     <>
-      <Header handleSubmit={handleSubmit} />
+      <Header handleSubmit={handleSubmit} type="write" />
       <div className="relative mx-auto lg:max-w-4xl">
         <Image
           src={image}

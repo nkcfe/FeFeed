@@ -21,7 +21,7 @@ import ChatBlank from '@/app/chatbot/components/ChatBlank';
 import Typing from '@/app/chatbot/components/Typing';
 import { toast } from 'react-toastify';
 import { PostType } from '@/module/type';
-import Header from '../(home)/components/Header';
+import Header from '../../components/share/Header';
 
 const Search = () => {
   const inputRef = useRef<HTMLInputElement>(null);

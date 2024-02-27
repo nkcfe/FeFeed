@@ -11,7 +11,7 @@ const fetchDelete = async (id: number) => {
   }
 };
 
-export const useDelete = (id: number) => {
+export const usePostDelete = (id: number) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({

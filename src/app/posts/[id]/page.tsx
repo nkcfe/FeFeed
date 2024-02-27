@@ -16,12 +16,12 @@ import { FaAngleDown } from 'react-icons/fa6';
 import { HiOutlineShare } from 'react-icons/hi';
 import { FiEdit2 } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
-import Header from '@/app/posts/components/Header';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { useDelete } from '@/hooks/useDelete';
+import { usePostDelete } from '@/hooks/usePostDelete';
 import { createClient } from '@/libs/supabase/client';
+import Header from '@/components/share/Header';
 
 const supabase = createClient();
 
@@ -46,7 +46,7 @@ const Post = (props: PostProps) => {
     },
   });
 
-  const { deletePost, isDeleteSuccess } = useDelete(id);
+  const { deletePost, isDeleteSuccess } = usePostDelete(id);
 
   const { scrollYProgress } = useScroll();
 

@@ -1,12 +1,15 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { cache } from 'react';
 
-const fetchPosts = async (pageParam: number, selectedCategory: string) => {
-  const response = await axios.get(`/api/posts?page=${pageParam}`, {
-    params: { page: pageParam, limit: 12, category: selectedCategory },
-  });
-  return response.data;
-};
+const fetchPosts = cache(
+  async (pageParam: number, selectedCategory: string) => {
+    const response = await axios.get(`/api/posts?page=${pageParam}`, {
+      params: { page: pageParam, limit: 12, category: selectedCategory },
+    });
+    return response.data;
+  },
+);
 
 export const useGetPosts = (selectedCategory: string) =>
   useInfiniteQuery({

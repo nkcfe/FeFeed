@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/libs/supabase/client';
 import { cn } from '@/utils/style';
+import ThemeButton from './ThemeButton';
 
 const supabase = createClient();
 
 interface HeaderProps {
   isScrollDown?: boolean;
   handleSubmit?: () => void;
-  type?: 'write'
+  type?: 'write';
 }
 
 const Header = (props: HeaderProps) => {
@@ -31,7 +32,7 @@ const Header = (props: HeaderProps) => {
   return (
     <div
       className={cn(
-        'fixed top-0 z-30 w-screen bg-white/50 backdrop-blur-xl',
+        'fixed top-0 z-30 w-screen bg-white/50 backdrop-blur-xl dark:bg-slate-800/90',
         isScrollDown && 'bg-slate-800 shadow-md transition-all duration-300',
       )}
     >
@@ -40,13 +41,14 @@ const Header = (props: HeaderProps) => {
           href="/"
           className={cn('border-none', isScrollDown && 'text-white')}
         >
-          <div className="flex items-center">
+          <div className="flex items-center dark:text-white">
             <AiFillFire size={24} />
             <span className="font-bold">Fe</span>
             <span>Feed</span>
           </div>
         </Link>
-        <div className="flex gap-1">
+        <div className="flex items-center justify-center gap-1">
+          <ThemeButton />
           <div>
             {type === 'write' ? (
               <>
@@ -79,6 +81,7 @@ const Header = (props: HeaderProps) => {
                     글 작성
                   </Button>
                 )}
+
                 <Button
                   variant={isScrollDown ? 'slate' : 'white'}
                   weight="bold"

@@ -4,6 +4,7 @@
 
 * {
   font-family: var(--font-overpass);
+  transition: background 0.2s;
 }
 
 .input {

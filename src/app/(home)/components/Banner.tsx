@@ -28,8 +28,10 @@ const Banner = (props: BannerProps) => {
         priority
         className="object-cover"
       />
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/50 backdrop-blur-2xl">
-        <div className="text-xl font-bold">Never, Never, Never</div>
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/50 backdrop-blur-2xl dark:bg-black/80">
+        <div className="text-xl font-bold text-black dark:text-white ">
+          Never, Never, Never
+        </div>
         <div className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-3xl font-extrabold text-transparent">
           Never give up
         </div>

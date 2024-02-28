@@ -12,7 +12,6 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import Focus from '@tiptap/extension-focus';
 import { useEditor } from '@tiptap/react';
-import WriteHeader from '@/app/write/components/WriteHeader';
 import Image from 'next/image';
 import Button from '@/components/share/Button';
 import Input from '@/components/share/Input';
@@ -20,6 +19,7 @@ import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
 import Tiptap from '@/components/share/editor/Editor';
 import { Image as TiptapImage } from '@tiptap/extension-image';
+import Header from '@/components/share/Header';
 
 interface EditProps {
   params: { id: number };
@@ -171,7 +171,7 @@ const Edit = (props: EditProps) => {
 
   return (
     <>
-      <WriteHeader handleSubmit={handleSubmit} />
+      <Header handleSubmit={handleSubmit} type="write" />
       <div className="relative mx-auto lg:max-w-4xl">
         <Image
           src={image ? image : '/strolling.png'}

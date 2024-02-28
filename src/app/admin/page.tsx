@@ -85,9 +85,9 @@ const Login = () => {
       ) : (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="z-10 flex w-96 flex-col items-center justify-center gap-2 rounded-2xl bg-white/50 p-8 shadow-lg backdrop-blur-lg"
+          className="z-10 flex w-80 flex-col items-center justify-center gap-2 rounded-3xl bg-white/50 p-8 shadow-lg backdrop-blur-lg"
         >
-          <div className="mb-10 text-2xl font-bold text-gray-700">
+          <div className="mb-10 text-xl font-bold text-gray-700">
             관리자 로그인
           </div>
           <AuthInput

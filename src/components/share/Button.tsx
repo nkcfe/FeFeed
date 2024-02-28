@@ -7,7 +7,7 @@ const ButtonVariants = cva('', {
     variant: {
       blue: 'rounded-lg bg-blue-100 text-black shadow-md transition hover:bg-blue-300',
       white:
-        'rounded-lg p-2 text-black transition hover:bg-gray-100 hover:text-blue-800',
+        'rounded-lg p-2 text-black transition hover:bg-gray-100 hover:text-blue-800 dark:text-white',
       gray: 'bg-gray-100 bg-opacity-70 text-black backdrop-blur-md transition hover:bg-gray-100',
       slate: ' text-white transition  hover:text-blue-300',
     },

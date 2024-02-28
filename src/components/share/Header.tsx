@@ -17,8 +17,24 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const { isScrollDown, handleSubmit, type } = props;
+  const { handleSubmit, type } = props;
   const router = useRouter();
+
+  const [isScrollDown, setIsScrollDown] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrollDown(true);
+      } else {
+        setIsScrollDown(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     // async 함수는 Promsie를 반환하기 때문에 useEffect 내부에서 사용할 수 없다.

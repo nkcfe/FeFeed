@@ -14,8 +14,8 @@ const overpass = Overpass({
 });
 
 export const metadata: Metadata = {
-  title: 'FeFeed',
-  description: 'Chul"s Blog',
+  title: '남궁철 블로그',
+  description: '개발 관련 기술 블로그입니다.',
 };
 
 export default function RootLayout({

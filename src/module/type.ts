@@ -2,9 +2,9 @@ export interface PostType {
   id: number;
   title: string;
   description: string;
-  content: string;
+  content: string | null;
   coverImage: string;
   category: string;
   tags: string[];
-  createdAt: string;
+  createdAt: Date;
 }

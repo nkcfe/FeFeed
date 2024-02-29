@@ -13,42 +13,45 @@ export type MessageProps = {
 
 const Message = (props: MessageProps) => {
   const { content, role, posts } = props;
-  console.log(posts);
+
   return (
-    <div className="">
-      <div
-        className={cn(
-          'container mx-auto flex items-start gap-1 rounded-3xl px-3 py-2 lg:gap-4',
-          role === 'assistant' ? 'bg-[#F0FAF9]' : 'bg-gray-100',
-        )}
-        data-cy="message"
-      >
-        {role === 'user' ? (
-          <>
-            <div className="rounded-full bg-gray-800 p-2">
-              <TfiFaceSmile className="size-5 text-white" />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="rounded-full bg-green-200 p-2">
-              <GoHubot className="size-5 text-green-700" />
-            </div>
-          </>
-        )}
-        <div className={'flex flex-col items-start py-2'}>
-          <div className={'whitespace-pre-wrap text-sm text-gray-600'}>
+    <div
+      className={cn(
+        'mx-auto flex w-full items-start',
+        role === 'user' ? 'justify-end' : 'justify-start',
+      )}
+      data-cy="message"
+    >
+      {role === 'user' ? (
+        <div className="rounded-xl bg-purple-400 p-2 px-4">
+          <div className={'whitespace-pre-wrap text-sm text-white'}>
             {content}
-            {posts && posts.length > 0 && (
-              <div>
-                {posts.map((post) => (
-                  <ChatPostCard key={post.id} {...post} />
-                ))}
-              </div>
-            )}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex flex-col">
+          <div className="flex items-center justify-start gap-2">
+            <div className="flex size-8 items-center justify-center rounded-full bg-yellow-200 p-1">
+              <GoHubot className="" />
+            </div>
+            <div className="text-sm font-semibold dark:text-white">
+              Chat Bot
+            </div>
+          </div>
+          <div className="flex flex-col items-start py-2 ">
+            <div className="max-w-sm whitespace-pre-wrap  rounded-xl bg-gray-100 p-4 text-sm text-gray-600 dark:bg-neutral-800 dark:text-gray-200 sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
+              {content}
+              {posts && posts.length > 0 && (
+                <div>
+                  {posts.map((post) => (
+                    <ChatPostCard key={post.id} {...post} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Calendar from './Calendar';
 import { useGetCategories } from '@/hooks/useGetCategories';
 import LoadingModal from '@/components/modal/LoadingModal';
 import { cn } from '@/utils/style';
+import Category from './Category';
 
 interface BannerProps {
   selectedCategory: string;
@@ -12,11 +13,6 @@ interface BannerProps {
 
 const Banner = (props: BannerProps) => {
   const { selectedCategory, handleSelectCategory } = props;
-
-  const { data: categories, isLoading: isCategoriesLoading } =
-    useGetCategories();
-
-  if (isCategoriesLoading) return <LoadingModal />;
 
   return (
     <div className="relative mt-14 flex h-[700px] items-center justify-center gap-4">
@@ -36,21 +32,10 @@ const Banner = (props: BannerProps) => {
           Never give up
         </div>
         <Calendar />
-        <div className="absolute bottom-0 flex h-16 w-screen items-center justify-center gap-2 overflow-x-scroll bg-white/40 backdrop-blur-xl">
-          {['전체', ...categories]?.map((category: string) => (
-            <div
-              className={cn(
-                'cursor-pointer rounded-2xl border px-4 py-1 font-bold transition hover:bg-gray-300',
-                selectedCategory === category && 'border-blue-500',
-              )}
-              data-cy="category"
-              onClick={() => handleSelectCategory(category)}
-              key={category}
-            >
-              {category}
-            </div>
-          ))}
-        </div>
+        <Category
+          selectedCategory={selectedCategory}
+          handleSelectCategory={handleSelectCategory}
+        />
       </div>
     </div>
   );

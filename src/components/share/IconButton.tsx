@@ -21,7 +21,7 @@ const IconButton = <Component extends ElementType = 'button'>({
   return createElement(
     component ?? 'button',
     {
-      className: cn('lg:p-2', className),
+      className: cn('p-2', className),
       'data-cy': props.label,
       ...props,
     },

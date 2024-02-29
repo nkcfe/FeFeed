@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/utils/style';
 
@@ -9,8 +9,15 @@ const ThemeButton = () => {
 
   const toggleSwitch = () => {
     document.documentElement.classList.toggle('dark');
+    window.localStorage.setItem('theme', isOn ? 'light' : 'dark');
     setIsOn(!isOn);
   };
+
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    setIsOn(isDarkMode);
+  }, []);
+
   return (
     <div
       className={cn(

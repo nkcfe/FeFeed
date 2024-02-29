@@ -33,8 +33,8 @@ const PostCard = (props: PostCardProps) => {
           className="object-cover shadow-inner transition duration-300 group-hover:scale-105"
         />
       </div>
-      <div className="mt-6 flex w-full flex-col items-start gap-2 transition duration-300 group-hover:text-blue-600">
-        <div className="rounded-xl bg-gray-600 px-2 py-0.5 text-xs text-white">
+      <div className="mt-6 flex w-full flex-col items-start gap-2 transition duration-300 group-hover:text-blue-600 dark:text-white">
+        <div className="rounded-2xl bg-gray-600 px-2 py-0.5 text-xs font-bold text-white">
           {post.category}
         </div>
         <div className="font-semibold md:text-lg lg:text-lg">{post.title}</div>

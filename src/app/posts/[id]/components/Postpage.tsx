@@ -61,13 +61,16 @@ const PostPage: FC<PostType> = ({
       <Header />
       <Scroll />
       <div className="flex flex-col">
-        <div className="h-[100vh] bg-white">
-          <div className="relative h-[90vh] w-screen object-cover ">
+        <div className="h-[100vh] ">
+          <div className="relative h-[90vh] w-screen object-cover">
+            <div className="absolute inset-x-0 bottom-0 z-10 h-1/2 bg-gradient-to-t from-black to-transparent" />
+
             <Image
               src={coverImage}
               alt={title}
-              layout="fill"
-              objectFit="cover"
+              fill
+              priority
+              className="object-cover"
             />
             <div className="absolute bottom-20 left-[50%] z-10 flex translate-x-[-50%] flex-col items-center justify-center gap-4 text-white">
               <div className="text-6xl font-bold">{title}</div>
@@ -82,14 +85,17 @@ const PostPage: FC<PostType> = ({
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50" />
           </div>
-          <div className="h-24 " ref={bodyRef} />
+          <div className="h-24" ref={bodyRef} />
         </div>
 
-        <div className="mx-auto w-full lg:max-w-4xl">
+        <div className="mx-auto w-full max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
           <div dangerouslySetInnerHTML={{ __html: content ?? '' }} />
-          <Footer id={id} isAuthenticated={isAuthenticated} deletePost={deletePost}/>
+          <Footer
+            id={id}
+            isAuthenticated={isAuthenticated}
+            deletePost={deletePost}
+          />
         </div>
-        
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 interface DateBlockProps {
   date: string;
-  activityData: string[];
+  activityData?: string[];
 }
 
 const DateBlock = (props: DateBlockProps) => {
@@ -20,7 +20,7 @@ const DateBlock = (props: DateBlockProps) => {
         key={date}
         className={cn(
           'size-2.5 cursor-pointer rounded-sm bg-gray-600 hover:bg-gray-300',
-          activityData.includes(date) && 'bg-green-400 hover:bg-green-600',
+          activityData?.includes(date) && 'bg-green-400 hover:bg-green-600',
         )}
       />
       {isHover && (

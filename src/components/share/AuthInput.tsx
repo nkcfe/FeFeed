@@ -20,7 +20,7 @@ const AuthInput = (props: InputProps) => {
     <div className="w-full">
       <label
         htmlFor={id}
-        className={`ml-2 block text-sm font-medium leading-6 text-gray-700`}
+        className={`my-2 block text-xs font-semibold text-gray-600`}
       >
         {label}
       </label>
@@ -32,7 +32,7 @@ const AuthInput = (props: InputProps) => {
           disabled={disabled}
           {...register(id, { required })}
           className={clsx(
-            `form-input block w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none transition px-2`,
+            `form-input block w-full rounded-3xl px-4 border-0 py-4 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 outline-none transition px-2`,
             errors[id] && 'focus:ring-rose-500',
             disabled && 'opacity-50 cursor-default',
           )}

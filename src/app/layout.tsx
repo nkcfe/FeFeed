@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_KR, Overpass } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 import './globals.css';
 import { NextLayout, NextProvider } from './provider';
+import { cn } from '@/utils/style';
 
-const notoSansKR = Noto_Sans_KR({
-  weight: ['400', '700', '800'],
-  subsets: ['latin'],
-});
-
-const overpass = Overpass({
-  weight: ['400', '700'],
+const raleway = Raleway({
+  weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
 });
 
@@ -26,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head></head>
-      <body className={overpass.className}>
+      <body className={cn('dark:bg-black/90', raleway.className)}>
         <NextProvider>
           <NextLayout>{children}</NextLayout>
         </NextProvider>

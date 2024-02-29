@@ -1,4 +1,3 @@
-import prisma from '@/libs/prismadb';
 import { getPosts } from '@/utils/fetch';
 import PostList from './components/PostList';
 

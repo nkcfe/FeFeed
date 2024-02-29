@@ -37,7 +37,6 @@ const PostList = (props: PostListProps) => {
     isFetchingNextPage,
     hasNextPage,
   } = useGetPosts(selectedCategory, initialPosts);
-  console.log(data);
 
   const fetchNext = useCallback(async () => {
     const res = await fetchNextPage();
@@ -94,7 +93,7 @@ const PostList = (props: PostListProps) => {
           <ClipLoader size={40} color="#68a3d4" />
         </div>
       )}
-      <div className="mb-10 h-10 w-full touch-none" ref={ref} />
+      <div className="mb-10 h-40 w-full touch-none" ref={ref} />
     </>
   );
 };

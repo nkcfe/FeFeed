@@ -3,12 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family: var(--font-overpass);
   transition: background 0.2s;
-}
-
-.input {
-  font-family: var(--font-overpass);
 }
 
 .tiptap {
@@ -21,30 +16,30 @@ ol {
 }
 
 h1 {
-  @apply text-3xl font-semibold my-2 mt-4;
+  @apply text-3xl mt-5 mb-2 font-semibold dark:text-white;
 }
 
 h2 {
-  @apply text-2xl font-semibold my-2 mt-3;
+  @apply text-2xl font-semibold mt-5 mb-2 dark:text-white;
 }
 
 h3 {
-  @apply text-xl font-semibold my-2;
+  @apply text-xl font-semibold mt-5 mb-2 dark:text-white;
 }
 
 p {
-  @apply text-base py-1;
+  @apply text-base py-1 dark:text-white leading-7;
 }
 
 ul > li {
-  @apply list-disc m-2;
+  @apply list-disc m-2 dark:text-white;
 }
 ol > li {
-  @apply list-decimal m-2;
+  @apply list-decimal m-2 dark:text-white;
 }
 
 code {
-  @apply bg-gray-100 p-1 rounded text-red-600 text-sm;
+  @apply bg-gray-100 p-1 rounded text-red-600 text-sm dark:bg-neutral-800;
 }
 
 p.is-editor-empty:first-child::before {
@@ -56,7 +51,11 @@ p.is-editor-empty:first-child::before {
 }
 
 pre {
-  @apply bg-stone-100 m-1 p-10 rounded-lg text-sm;
+  @apply bg-stone-100 m-1 p-10 rounded-lg text-sm dark:bg-neutral-800;
+
+  code {
+    @apply bg-transparent p-0 dark:text-white;
+  }
 }
 
 blockquote {

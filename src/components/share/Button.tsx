@@ -7,12 +7,14 @@ const ButtonVariants = cva('', {
     variant: {
       blue: 'rounded-lg bg-blue-100 text-black shadow-md transition hover:bg-blue-300',
       white:
-        'rounded-lg p-2 text-black transition hover:bg-gray-100 hover:text-blue-800 dark:text-white',
+        'rounded-lg p-2 text-black transition hover:bg-gray-100 hover:text-blue-800 dark:text-white dark:hover:bg-transparent dark:hover:text-blue-400',
       gray: 'bg-gray-100 bg-opacity-70 text-black backdrop-blur-md transition hover:bg-gray-100',
       slate: ' text-white transition  hover:text-blue-300',
+      purple: 'bg-purple-400 text-white hover:bg-purple-500',
     },
     shape: {
       primary: 'rounded-lg',
+      secondary: 'rounded-3xl',
       full: 'rounded-full',
     },
     size: {

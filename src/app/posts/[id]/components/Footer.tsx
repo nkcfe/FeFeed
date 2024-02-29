@@ -31,7 +31,7 @@ const Footer = (props: FooterProps) => {
 
   return (
     <>
-      <div className="flex h-52 w-full items-end justify-between bg-white">
+      <div className="flex h-52 w-full items-end justify-between bg-transparent">
         <Button
           variant="gray"
           shape="primary"

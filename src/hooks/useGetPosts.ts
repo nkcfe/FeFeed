@@ -20,7 +20,7 @@ export const useGetPosts = (
     queryKey: ['posts'],
     queryFn: ({ pageParam }) => fetchPosts(pageParam, selectedCategory),
     initialData: !!initialPosts
-      ? { pages: [initialPosts], pageParams: [0] }
+      ? { pages: [initialPosts], pageParams: [1] }
       : undefined,
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>

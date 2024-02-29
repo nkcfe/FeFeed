@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { AiFillFire } from 'react-icons/ai';
 import Button from '@/components/share/Button';
@@ -41,6 +43,7 @@ const Header = (props: HeaderProps) => {
     // 따라서 즉시 실행 함수로 감싸주어야 한다.
     (async () => {
       const user = await supabase.auth.getUser();
+      if (user.error) return;
       setIsAuthenticated(!!user.data.user);
     })();
   }, []);
@@ -48,8 +51,8 @@ const Header = (props: HeaderProps) => {
   return (
     <div
       className={cn(
-        'fixed top-0 z-30 w-screen bg-white/50 backdrop-blur-xl dark:bg-slate-800/90',
-        isScrollDown && 'bg-slate-800 shadow-md transition-all duration-300',
+        'fixed top-0 z-30 w-screen bg-white/50 backdrop-blur-xl dark:bg-black/80',
+        isScrollDown && 'bg-black/80 shadow-md transition-all duration-300',
       )}
     >
       <div className="mx-auto flex h-14 items-center justify-between p-6 text-lg lg:max-w-6xl">
@@ -63,7 +66,7 @@ const Header = (props: HeaderProps) => {
             <span>Feed</span>
           </div>
         </Link>
-        <div className="flex items-center justify-center gap-1">
+        <div className="flex items-center justify-center gap-2">
           <ThemeButton />
           <div>
             {type === 'write' ? (

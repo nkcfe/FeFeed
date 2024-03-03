@@ -46,7 +46,7 @@ const CategorySelect = (props: CategorySelectProps) => {
 
   return (
     <div
-      className="relative flex h-10 w-40 items-center justify-between rounded-xl bg-white px-4 py-2 shadow-md"
+      className="relative flex h-10 min-w-40 items-center justify-between rounded bg-neutral-200 p-2 px-3 shadow-sm dark:bg-neutral-600"
       ref={ref}
     >
       {category ? (
@@ -54,15 +54,15 @@ const CategorySelect = (props: CategorySelectProps) => {
           className="flex w-auto cursor-pointer items-center justify-center rounded border border-gray-300 px-1 text-sm text-gray-500 transition hover:border-blue-400 hover:text-blue-400"
           onClick={handleDeleteCateogry}
         >
-          <div>{category}</div>
-          <MdClose size={16} />
+          <div className="p-1 text-xs dark:text-white">{category}</div>
+          <MdClose size={16} className="dark:text-blue-400" />
         </div>
       ) : (
         <input
           placeholder="카테고리"
           data-cy="category-input"
           ref={inputRef}
-          className="w-28 text-sm outline-none"
+          className="min-w-28 bg-transparent text-sm outline-none dark:text-white dark:placeholder:text-gray-200"
           onFocus={() => setIsOpen(true)}
           value={word}
           onChange={(e) => setWord(e.target.value)}
@@ -74,13 +74,13 @@ const CategorySelect = (props: CategorySelectProps) => {
         />
       )}
 
-      <IoMdArrowDropdown />
+      <IoMdArrowDropdown className="dark:text-white" />
       {isOpen && (
-        <div className="absolute left-0 top-11 z-10 flex w-40 flex-col items-start justify-center gap-2 rounded-xl bg-white p-2 shadow-md">
+        <div className="absolute left-0 top-11 z-10 flex min-w-[10.5rem] flex-col items-start justify-center gap-2 rounded bg-neutral-200 p-2 shadow-sm dark:bg-neutral-600">
           {categories?.map((category: string, index: number) => (
             <div
               key={index}
-              className="w-full cursor-pointer rounded-xl p-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="w-full cursor-pointer rounded p-2 text-sm text-gray-700 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-500"
               onClick={() => handleCategory(category)}
             >
               {category}

@@ -4,6 +4,8 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { usePathname } from 'next/navigation';
+import Header from '@/components/share/Header';
 interface Props {
   children: React.ReactNode;
 }
@@ -27,8 +29,12 @@ export const NextProvider = ({ children }: Props) => {
 };
 
 export const NextLayout = ({ children }: Props) => {
+  const pathName = usePathname();
   return (
     <>
+      {!pathName.includes('/write') && !pathName.includes('/edit') && (
+        <Header />
+      )}
       <main className="mx-auto h-full">{children}</main>
     </>
   );

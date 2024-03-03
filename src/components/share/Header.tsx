@@ -11,15 +11,8 @@ import ThemeButton from './ThemeButton';
 
 const supabase = createClient();
 
-interface HeaderProps {
-  isScrollDown?: boolean;
-  handleSubmit?: () => void;
-  type?: 'write';
-}
-
-const Header = (props: HeaderProps) => {
+const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const { handleSubmit, type } = props;
   const router = useRouter();
 
   const [isScrollDown, setIsScrollDown] = useState(false);
@@ -68,59 +61,37 @@ const Header = (props: HeaderProps) => {
         </Link>
         <div className="flex items-center justify-center gap-2">
           <ThemeButton />
-          <div>
-            {type === 'write' ? (
-              <>
-                <Button
-                  variant="white"
-                  weight="light"
-                  size="medium"
-                  onClick={() => router.back()}
-                >
-                  돌아가기
-                </Button>
-                <Button
-                  variant="blue"
-                  weight="light"
-                  size="medium"
-                  onClick={handleSubmit}
-                >
-                  저장
-                </Button>
-              </>
-            ) : (
-              <>
-                {isAuthenticated && (
-                  <Button
-                    variant={isScrollDown ? 'slate' : 'white'}
-                    weight="bold"
-                    size="medium"
-                    onClick={() => router.push('/write')}
-                  >
-                    글 작성
-                  </Button>
-                )}
 
-                <Button
-                  variant={isScrollDown ? 'slate' : 'white'}
-                  weight="bold"
-                  size="medium"
-                  custom='data-cy="admin"'
-                  onClick={() => router.push('/admin')}
-                >
-                  어드민
-                </Button>
-                <Button
-                  variant={isScrollDown ? 'slate' : 'white'}
-                  weight="bold"
-                  size="medium"
-                  custom='data-cy="chatbot"'
-                  onClick={() => router.push('/chatbot')}
-                >
-                  챗봇
-                </Button>
-              </>
+          <div>
+            {isAuthenticated && (
+              <Button
+                variant={isScrollDown ? 'slate' : 'white'}
+                weight="bold"
+                size="medium"
+                onClick={() => router.push('/write')}
+              >
+                글 작성
+              </Button>
             )}
+
+            <Button
+              variant={isScrollDown ? 'slate' : 'white'}
+              weight="bold"
+              size="medium"
+              custom='data-cy="admin"'
+              onClick={() => router.push('/admin')}
+            >
+              어드민
+            </Button>
+            <Button
+              variant={isScrollDown ? 'slate' : 'white'}
+              weight="bold"
+              size="medium"
+              custom='data-cy="chatbot"'
+              onClick={() => router.push('/chatbot')}
+            >
+              챗봇
+            </Button>
           </div>
         </div>
       </div>

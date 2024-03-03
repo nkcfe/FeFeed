@@ -15,12 +15,12 @@ const MenuButton = (props: MenuButtonProps) => {
     <button
       onClick={() => onClick(title as string)}
       className={cn(
-        'flex w-auto cursor-pointer items-center justify-start rounded-lg bg-gray-100 p-2 transition hover:bg-gray-200',
+        'flex w-auto cursor-pointer items-center justify-start rounded p-2 text-gray-500 transition hover:bg-gray-100 dark:bg-neutral-700 dark:text-white dark:shadow-none dark:hover:bg-neutral-600',
         className,
       )}
     >
-      <Icon size={18} className="text-gray-500" />
-      {title && <div className="ml-2 text-sm text-gray-500">{title}</div>}
+      <Icon size={16} className="" />
+      {title && <div className="ml-2 text-xs">{title}</div>}
     </button>
   );
 };

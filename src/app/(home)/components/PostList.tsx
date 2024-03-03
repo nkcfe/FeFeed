@@ -65,7 +65,6 @@ const PostList = (props: PostListProps) => {
 
   return (
     <>
-      <Header />
       <Scroll />
       <Banner
         selectedCategory={selectedCategory}

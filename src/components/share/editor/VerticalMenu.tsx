@@ -93,7 +93,7 @@ const VerticalMenu = ({ editor }: { editor: Editor | null }) => {
   ];
 
   return (
-    <div className="absolute left-[-10px] top-4 flex w-32 flex-col gap-3 rounded-2xl bg-white p-2 shadow-md shadow-gray-300">
+    <div className="absolute left-[-10px] top-4 flex w-32 flex-col gap-2 rounded bg-white p-2 shadow-sm shadow-gray-300 dark:bg-neutral-700 dark:shadow-none">
       {textItems.map((item) => (
         <MenuButton
           title={item.title}

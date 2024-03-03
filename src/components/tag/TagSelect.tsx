@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { useQuery } from '@tanstack/react-query';
+import { MdClose } from 'react-icons/md';
 
 interface TagSelectProps {
   selectedTags: string[];
@@ -22,12 +23,18 @@ const TagSelect = (props: TagSelectProps) => {
     },
   });
 
+  console.log(selectedTags);
+
   const selectTag = (category: string) => {
     if (!selectedTags.includes(category)) {
       setSelectedTags((prev) => [...prev, category]);
     }
     setWord('');
     setIsOpen(false);
+  };
+
+  const handleDeleteTag = (tag: string) => {
+    setSelectedTags(selectedTags.filter((t) => t !== tag));
   };
 
   useEffect(() => {
@@ -41,15 +48,15 @@ const TagSelect = (props: TagSelectProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-start justify-center">
       <div
-        className="relative flex w-36 items-center justify-center rounded-xl bg-white px-4 py-2 shadow-md"
+        className="relative flex min-w-40 items-center justify-center rounded bg-neutral-200 p-2 px-3 shadow-sm dark:bg-neutral-600"
         ref={ref}
       >
         <input
           placeholder="태그명"
           data-cy="tag-input"
-          className="w-24 text-sm outline-none"
+          className="min-w-28 bg-transparent text-sm outline-none dark:text-white dark:placeholder:text-gray-200"
           onFocus={() => setIsOpen(true)}
           value={word}
           onChange={(e) => setWord(e.target.value)}
@@ -59,13 +66,13 @@ const TagSelect = (props: TagSelectProps) => {
             }
           }}
         />
-        <IoMdArrowDropdown />
+        <IoMdArrowDropdown className="dark:text-white" />
         {isOpen && (
-          <div className="absolute top-10 z-10 flex w-36 flex-col items-start justify-center gap-2 rounded-xl bg-white p-2 shadow-md">
+          <div className="absolute top-10 z-10 flex w-36 min-w-[10.5rem] flex-col items-start justify-center gap-2 rounded bg-neutral-200 p-2 shadow-sm dark:bg-neutral-600">
             {tags?.map((tag: string, index: number) => (
               <div
                 key={index}
-                className="w-full cursor-pointer rounded-xl p-2 text-sm text-gray-700 hover:bg-gray-100"
+                className="w-full cursor-pointer rounded p-2 text-sm text-gray-700 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-500"
                 onClick={() => selectTag(tag)}
               >
                 {tag}
@@ -74,13 +81,15 @@ const TagSelect = (props: TagSelectProps) => {
           </div>
         )}
       </div>
-      <div className="mt-2 flex w-full items-center justify-center gap-1">
+      <div className="mt-2 flex w-full items-center justify-start gap-1">
         {selectedTags.map((tag, index) => (
           <div
-            key={index}
-            className="rounded border border-gray-300 px-1.5 py-1 text-xs text-gray-500"
+            key={tag}
+            className="flex w-auto cursor-pointer items-center justify-center rounded border border-gray-300 px-1 text-sm text-gray-500 transition hover:border-blue-400 hover:text-blue-400"
+            onClick={() => handleDeleteTag(tag)}
           >
-            {tag}
+            <div className="p-1 text-xs dark:text-white">{tag}</div>
+            <MdClose size={16} className="dark:text-blue-400" />
           </div>
         ))}
       </div>

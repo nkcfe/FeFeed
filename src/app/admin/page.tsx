@@ -11,7 +11,6 @@ export default async function Admin() {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-center">
-      <Header />
       <Image
         src="/banner3.png"
         alt="배경"

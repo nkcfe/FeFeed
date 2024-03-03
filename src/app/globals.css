@@ -7,7 +7,7 @@
 }
 
 .tiptap {
-  @apply bg-white;
+  @apply bg-transparent;
 }
 
 ul,

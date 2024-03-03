@@ -111,7 +111,6 @@ const ChatPage = () => {
 
   return (
     <div className="h-[calc(100vh-7.5rem)] overflow-scroll">
-      <Header />
       <div className=" mx-auto max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
         {messagePropsList.length === 0 ? (
           <div className="flex h-[calc(100vh-7.5rem)] justify-center">
@@ -135,7 +134,7 @@ const ChatPage = () => {
           <Input
             ref={inputRef}
             type="text"
-            className="mx-1 flex-1 bg-transparent p-4 text-sm text-gray-600"
+            className="mx-1 flex-1 bg-transparent p-4 text-sm text-gray-600 dark:text-gray-100"
             placeholder="무엇이든 물어보세요!"
           />
           <IconButton

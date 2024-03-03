@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
-import { Raleway } from 'next/font/google';
+import { Noto_Sans_KR, Jost } from 'next/font/google';
 import './globals.css';
 import { NextLayout, NextProvider } from './provider';
 import { cn } from '@/utils/style';
 
-const raleway = Raleway({
-  weight: ['400', '500', '600', '700', '800', '900'],
+const noto = Noto_Sans_KR({
+  weight: ['400', '500', '700', '900'],
+  subsets: ['latin'],
+});
+
+const jost = Jost({
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
 });
 
@@ -22,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head></head>
-      <body className={cn('dark:bg-black/90', raleway.className)}>
+      <body className={cn('dark:bg-black/90', noto.className, jost.className)}>
         <NextProvider>
           <NextLayout>{children}</NextLayout>
         </NextProvider>

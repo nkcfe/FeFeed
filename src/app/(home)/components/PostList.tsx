@@ -87,12 +87,12 @@ const PostList = (props: PostListProps) => {
           </div>
         </div>
       </div>
-      {isFetchingNextPage && (
-        <div className="flex h-40 w-full items-center justify-center">
-          <ClipLoader size={40} color="#68a3d4" />
-        </div>
-      )}
-      <div className="mb-10 h-40 w-full touch-none" ref={ref} />
+      <div
+        className="mb-10 flex h-52 w-full touch-none items-center justify-center"
+        ref={ref}
+      >
+        {isFetchingNextPage && <ClipLoader size={50} color="#ce60df" />}
+      </div>
     </>
   );
 };

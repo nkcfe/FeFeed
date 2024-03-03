@@ -14,7 +14,10 @@ const ThemeButton = () => {
   };
 
   useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains('dark');
+    const isDarkMode = window.localStorage.getItem('theme') === 'dark';
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    }
     setIsOn(isDarkMode);
   }, []);
 

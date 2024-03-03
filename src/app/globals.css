@@ -4,6 +4,12 @@
 
 * {
   transition: background 0.2s;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 .tiptap {
@@ -39,7 +45,7 @@ ol > li {
 }
 
 code {
-  @apply bg-gray-100 p-1 rounded text-red-600 text-sm dark:bg-neutral-800;
+  @apply bg-gray-100 p-1 rounded text-red-600 text-sm dark:bg-neutral-700;
 }
 
 p.is-editor-empty:first-child::before {
@@ -51,7 +57,7 @@ p.is-editor-empty:first-child::before {
 }
 
 pre {
-  @apply bg-stone-100 m-1 p-10 rounded-lg text-sm dark:bg-neutral-800;
+  @apply bg-stone-100 m-1 p-10 rounded-lg text-sm dark:bg-neutral-700;
 
   code {
     @apply bg-transparent p-0 dark:text-white;

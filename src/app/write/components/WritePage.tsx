@@ -19,6 +19,7 @@ import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
 import { Image as TiptapImage } from '@tiptap/extension-image';
 import WriteHeader from './WriteHeader';
+import Scroll from '@/components/share/Scroll';
 
 const supabase = createClient();
 
@@ -236,6 +237,7 @@ const WritePage = (props: PostType) => {
         isEdit={isEdit}
         handleUpdate={handleUpdate}
       />
+      <Scroll />
       <div className="relative mt-14">
         <Image
           src={image}

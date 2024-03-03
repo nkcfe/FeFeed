@@ -14,7 +14,7 @@ const WriteHeader = (props: WriteHeaderProps) => {
   const { handleSubmit, isEdit, handleUpdate } = props;
   const router = useRouter();
   return (
-    <div className="fixed top-0 w-screen bg-white/50 backdrop-blur-xl dark:bg-black/80">
+    <div className="fixed top-0 z-20 w-screen bg-white/50 backdrop-blur-xl dark:bg-black/80">
       <div className="mx-auto flex h-14 items-center justify-between p-6 text-lg lg:max-w-6xl">
         <Button
           variant="white"

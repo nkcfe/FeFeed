@@ -71,19 +71,15 @@ const PostList = (props: PostListProps) => {
         handleSelectCategory={handleSelectCategory}
       />
       <div className="mt-16 flex justify-center pb-16">
-        <div className="relative flex w-full justify-center gap-1 md:max-w-2xl lg:max-w-6xl">
-          <div className="grid justify-center gap-10 md:grid-cols-2 lg:grid-cols-3">
-            {isLoading ? (
-              <LoadingModal />
-            ) : (
-              data?.pages?.map((page: any, index: number) => (
-                <Fragment key={index}>
-                  {page.data.map((post: PostType) => (
-                    <PostCard key={post.id} post={post} />
-                  ))}
-                </Fragment>
-              ))
-            )}
+        <div className="relative w-full justify-center gap-1 md:max-w-2xl lg:max-w-6xl">
+          <div className="grid items-start justify-start gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {data?.pages?.map((page: any, index: number) => (
+              <Fragment key={index}>
+                {page.data.map((post: PostType) => (
+                  <PostCard key={post.id} post={post} />
+                ))}
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>

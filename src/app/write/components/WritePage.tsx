@@ -20,6 +20,7 @@ import TagSelect from '@/components/tag/TagSelect';
 import { Image as TiptapImage } from '@tiptap/extension-image';
 import WriteHeader from './WriteHeader';
 import Scroll from '@/components/share/Scroll';
+import ImageResize from 'tiptap-extension-resize-image';
 
 const supabase = createClient();
 
@@ -108,6 +109,7 @@ const WritePage = (props: PostType) => {
     extensions: [
       StarterKit,
       TiptapImage,
+      ImageResize,
       Placeholder.configure({
         placeholder: '텍스트를 선택해 에디터를 사용해보세요.',
         showOnlyCurrent: false,

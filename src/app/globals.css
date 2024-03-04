@@ -57,7 +57,7 @@ p.is-editor-empty:first-child::before {
 }
 
 pre {
-  @apply bg-stone-100 m-1 p-10 rounded-lg text-sm dark:bg-neutral-700;
+  @apply bg-stone-100 m-1 p-10 rounded-lg text-sm dark:bg-neutral-700 overflow-y-auto;
 
   code {
     @apply bg-transparent p-0 dark:text-white;

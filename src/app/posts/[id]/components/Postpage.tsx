@@ -73,7 +73,7 @@ const PostPage: FC<PostType> = ({
               className="object-cover"
             />
             <div className="absolute bottom-20 left-[50%] z-10 flex translate-x-[-50%] flex-col items-center justify-center gap-4 text-white">
-              <div className="text-6xl font-bold">{title}</div>
+              <div className="text-6xl font-bold leading-snug">{title}</div>
               <div className="mb-4 text-sm">
                 {format(new Date(createdAt), 'yyyy.MM.dd')}
               </div>

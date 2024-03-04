@@ -1,36 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 개인 블로그
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 기술 선정
+| 사용 기술 | 선정 이유 |
+| --- | --- |
+| Next.js | 가장 큰 이유는 SEO 최적화를 위한 SSR을 가능하게 하기 때문. 그 외에도 React 프레임워크이며, Image 최적화, Font 최적화를 지원해주며, API routes 등의 기능도 지원하기 때문.
+| Prisma | Schema를 객체로 매핑해주는 역할로 DB 마이그레이션과 클라이언트 코드 생성을 자동으로 해줘 타입세이프한 코드를 작성할 수 있다. 간단한 CRUD를 작성하기에 상당히 편리하고 러닝커브가 낮다는 장점으로 인해 채택.   |
+| Tailwind | 미리 정의된 클래스를 사용함으로써 일관성을 유지할 수 있으며, 신속한 개발 또한 가능하다. 테밍을 활용해서 유연하게 사용자화 할 수있고, 자체적으로 접근성을 염두에 두고 설계되어있는 라이브러리이기 때문에 모든 사용자의 접근성에도 용이하다.
+| cypress | 

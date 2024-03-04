@@ -1,12 +1,13 @@
 import { Editor } from '@tiptap/react';
 
-import { LuHeading1, LuHeading2 } from 'react-icons/lu';
+import { LuHeading1, LuHeading2, LuCode2 } from 'react-icons/lu';
 import { FaListOl, FaListUl } from 'react-icons/fa';
 
 import MenuButton from './MenuButton';
 import { toast } from 'react-toastify';
 import { createClient } from '@/libs/supabase/client';
 import { IoImageOutline } from 'react-icons/io5';
+import { RiDoubleQuotesL } from 'react-icons/ri';
 
 const supabase = createClient();
 
@@ -45,6 +46,22 @@ const VerticalMenu = ({ editor }: { editor: Editor | null }) => {
       className: editor.isActive('orderedList') ? 'bg-gray-200' : 'bg-white',
     },
     {
+      title: '인용구',
+      onClick: () => editor.chain().focus().toggleBlockquote().run(),
+      icon: RiDoubleQuotesL,
+      className: editor.isActive('blockquote')
+        ? 'bg-gray-200 dark:bg-neutral-600'
+        : 'bg-white dark:bg-neutral-700',
+    },
+    {
+      title: '코드블럭',
+      onClick: () => editor.chain().focus().toggleCodeBlock().run(),
+      icon: LuCode2,
+      className: editor.isActive('codeBlock')
+        ? 'bg-gray-200 dark:bg-neutral-600'
+        : 'bg-white dark:bg-neutral-700',
+    },
+    {
       title: '이미지',
       onClick: async () => {
         const input = document.createElement('input');
@@ -62,7 +79,7 @@ const VerticalMenu = ({ editor }: { editor: Editor | null }) => {
             return;
           }
           const currentTime = new Date().toISOString();
-          const fileName = `${currentTime}_${file.name}`;
+          const fileName = `${currentTime}`;
           const { data, error } = await supabase.storage
             .from('images')
             .upload(fileName, file);

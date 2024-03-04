@@ -34,7 +34,7 @@ const PostCard = (props: PostCardProps) => {
     <motion.div
       // eslint-disable-next-line tailwindcss/no-custom-classname
       className={cn(
-        'group mt-10 flex cursor-pointer flex-col items-center justify-center',
+        'group flex cursor-pointer flex-col items-center justify-center',
       )}
       data-cy="post-card"
       onClick={() => router.push(`/posts/${post.id}`)}

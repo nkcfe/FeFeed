@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
 import Calendar from './Calendar';
-import { useGetCategories } from '@/hooks/useGetCategories';
-import LoadingModal from '@/components/modal/LoadingModal';
-import { cn } from '@/utils/style';
 import Category from './Category';
 
 interface BannerProps {
@@ -28,7 +25,7 @@ const Banner = (props: BannerProps) => {
         <div className="text-xl font-bold text-black dark:text-white ">
           Never, Never, Never
         </div>
-        <div className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-3xl font-extrabold text-transparent">
+        <div className="h-10 bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-3xl font-extrabold text-transparent">
           Never give up
         </div>
         <Calendar />

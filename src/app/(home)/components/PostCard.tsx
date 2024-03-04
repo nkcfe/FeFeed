@@ -40,7 +40,7 @@ const PostCard = (props: PostCardProps) => {
       onClick={() => router.push(`/posts/${post.id}`)}
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.9 }}
     >
       <motion.div variants={cardVariants}>
         <div className="relative h-[200px] w-[300px] overflow-hidden rounded-xl lg:h-[250px] lg:w-[350px]">
@@ -48,7 +48,8 @@ const PostCard = (props: PostCardProps) => {
             src={post.coverImage}
             alt="cover"
             fill
-            // sizes="100% 100%"
+            priority
+            sizes="(max-width: 300px) 100vw, 300px"
             className="object-cover shadow-inner transition duration-300 group-hover:scale-105"
           />
         </div>

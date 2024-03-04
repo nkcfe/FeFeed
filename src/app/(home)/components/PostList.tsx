@@ -19,10 +19,11 @@ import { ClipLoader } from 'react-spinners';
 
 interface PostListProps {
   initialPosts: { data: PostType[]; page: number } | null;
+  initialCategories: string[] | null;
 }
 
 const PostList = (props: PostListProps) => {
-  const initialPosts = props.initialPosts;
+  const { initialPosts, initialCategories } = props;
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
 
   const ref = useRef<HTMLDivElement>(null);
@@ -69,6 +70,7 @@ const PostList = (props: PostListProps) => {
       <Banner
         selectedCategory={selectedCategory}
         handleSelectCategory={handleSelectCategory}
+        initialCategories={initialCategories}
       />
       <div className="mt-16 flex justify-center pb-16">
         <div className="relative w-full justify-center gap-1 md:max-w-2xl lg:max-w-6xl">

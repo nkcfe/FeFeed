@@ -6,8 +6,9 @@ const fetchCategories = async () => {
   return response.data;
 };
 
-export const useGetCategories = () =>
+export const useGetCategories = (initialCategories: string[] | null) =>
   useQuery({
     queryKey: ['categories'],
     queryFn: fetchCategories,
+    initialData: initialCategories,
   });

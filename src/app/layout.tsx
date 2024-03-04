@@ -15,8 +15,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Devcamp Day1 Signup',
-  description: '회원가입 폼',
+  title: '남궁철의 블로그',
+  description: '개인 개발 블로그',
 };
 
 export default function RootLayout({

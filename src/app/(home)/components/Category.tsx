@@ -5,13 +5,14 @@ import React from 'react';
 interface CategoryProps {
   selectedCategory: string;
   handleSelectCategory: (category: string) => void;
+  initialCategories: string[] | null;
 }
 
 const Category = (props: CategoryProps) => {
-  const { selectedCategory, handleSelectCategory } = props;
+  const { selectedCategory, handleSelectCategory, initialCategories } = props;
 
   const { data: categories, isLoading: isCategoriesLoading } =
-    useGetCategories();
+    useGetCategories(initialCategories);
 
   return (
     <div className="absolute bottom-0 flex h-16 w-screen items-center justify-center gap-2 overflow-x-scroll bg-white/40 backdrop-blur-xl dark:bg-white/10">

@@ -6,10 +6,11 @@ import Category from './Category';
 interface BannerProps {
   selectedCategory: string;
   handleSelectCategory: (category: string) => void;
+  initialCategories: string[] | null;
 }
 
 const Banner = (props: BannerProps) => {
-  const { selectedCategory, handleSelectCategory } = props;
+  const { selectedCategory, handleSelectCategory, initialCategories } = props;
 
   return (
     <div className="relative mt-14 flex h-[700px] items-center justify-center gap-4">
@@ -32,6 +33,7 @@ const Banner = (props: BannerProps) => {
         <Category
           selectedCategory={selectedCategory}
           handleSelectCategory={handleSelectCategory}
+          initialCategories={initialCategories}
         />
       </div>
     </div>

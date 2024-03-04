@@ -38,3 +38,30 @@ export const getPosts = cache(
     return { data: posts, page: pageParam };
   },
 );
+
+export const getCategories = cache(async () => {
+  const categories = await prisma.post.findMany({
+    select: {
+      category: true,
+    },
+  });
+  const setCategories = new Set(
+    categories.map((category) => category.category),
+  );
+
+  if (!categories) return null;
+  return Array.from(setCategories) as string[];
+});
+
+export const getTags = cache(async () => {
+  const tags = await prisma.post.findMany({
+    select: {
+      tags: true,
+    },
+  });
+
+  const setTags = new Set(tags.flatMap((tag) => tag.tags));
+
+  if (!tags) return null;
+  return Array.from(setTags) as string[];
+});

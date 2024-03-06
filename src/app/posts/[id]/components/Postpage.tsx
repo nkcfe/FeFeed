@@ -17,24 +17,11 @@ import Header from '@/components/share/Header';
 import Scroll from '@/components/share/Scroll';
 import Footer from './Footer';
 import ReactHtmlParser, { Transform } from 'react-html-parser';
-import css from 'highlight.js/lib/languages/css';
-import js from 'highlight.js/lib/languages/javascript';
-import ts from 'highlight.js/lib/languages/typescript';
-import html from 'highlight.js/lib/languages/xml';
-import bash from 'highlight.js/lib/languages/bash';
 
-import { createLowlight } from 'lowlight';
 import { toHtml } from 'hast-util-to-html';
+import { lowlight } from '@/utils/lowlight';
 
 const supabase = createClient();
-
-const lowlight = createLowlight();
-
-lowlight.register({ html });
-lowlight.register({ css });
-lowlight.register({ js });
-lowlight.register({ ts });
-lowlight.register({ bash });
 
 const PostPage: FC<PostType> = ({
   id,

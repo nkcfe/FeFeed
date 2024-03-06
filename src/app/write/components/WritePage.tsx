@@ -4,38 +4,33 @@ import React, { useRef, useState } from 'react';
 import Input from '@/components/share/Input';
 import Button from '@/components/share/Button';
 import Tiptap from '@/components/share/editor/Editor';
+import CategorySelect from '@/components/share/category/CategorySelect';
+import TagSelect from '@/components/tag/TagSelect';
+import WriteHeader from './WriteHeader';
+import Scroll from '@/components/share/Scroll';
 
 import Image from 'next/image';
 
 import { useEditor } from '@tiptap/react';
+
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import Focus from '@tiptap/extension-focus';
-import { createClient } from '@/libs/supabase/client';
-import { toast } from 'react-toastify';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import CategorySelect from '@/components/share/category/CategorySelect';
-import TagSelect from '@/components/tag/TagSelect';
 import { Image as TiptapImage } from '@tiptap/extension-image';
-import WriteHeader from './WriteHeader';
-import Scroll from '@/components/share/Scroll';
 import ImageResize from 'tiptap-extension-resize-image';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import css from 'highlight.js/lib/languages/css';
-import js from 'highlight.js/lib/languages/javascript';
-import ts from 'highlight.js/lib/languages/typescript';
-import html from 'highlight.js/lib/languages/xml';
-import { createLowlight } from 'lowlight';
+
+import { createClient } from '@/libs/supabase/client';
+
+import { toast } from 'react-toastify';
+import axios from 'axios';
+
+import { useRouter } from 'next/navigation';
+
+import { lowlight } from '@/utils/lowlight';
+
 
 const supabase = createClient();
-
-const lowlight = createLowlight();
-
-lowlight.register({ html });
-lowlight.register({ css });
-lowlight.register({ js });
-lowlight.register({ ts });
 
 interface PostType {
   id?: number;
@@ -99,8 +94,6 @@ const WritePage = (props: PostType) => {
         .from('images')
         .upload(fileName, file);
 
-      console.log('data', data);
-
       if (error) {
         toast.dismiss(toastId);
         toast.error('파일 업로드에 실패했습니다.');
@@ -117,9 +110,12 @@ const WritePage = (props: PostType) => {
     input.addEventListener('change', changeHandler);
   };
 
+
+
   const editor = useEditor({
     content: content || '',
     extensions: [
+      
       StarterKit,
       TiptapImage,
       ImageResize,
@@ -142,7 +138,7 @@ const WritePage = (props: PostType) => {
       },
     },
   });
-  console.log(editor?.getHTML());
+
 
   const handleSubmit = async () => {
     const title = titleRef.current?.value;

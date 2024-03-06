@@ -5,6 +5,7 @@ import {
   LuItalic,
   LuHeading1,
   LuHeading2,
+  LuHeading3,
 } from 'react-icons/lu';
 import { RiDoubleQuotesL } from 'react-icons/ri';
 import { Editor } from '@tiptap/react';
@@ -28,6 +29,13 @@ const Menu = ({ editor }: { editor: Editor | null }) => {
       onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
       icon: LuHeading2,
       className: editor.isActive('heading', { level: 2 })
+        ? 'bg-gray-200 dark:bg-neutral-600'
+        : 'bg-white dark:bg-neutral-700',
+    },
+    {
+      onClick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
+      icon: LuHeading3,
+      className: editor.isActive('heading', { level: 3 })
         ? 'bg-gray-200 dark:bg-neutral-600'
         : 'bg-white dark:bg-neutral-700',
     },

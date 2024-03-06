@@ -16,8 +16,25 @@ import { createClient } from '@/libs/supabase/client';
 import Header from '@/components/share/Header';
 import Scroll from '@/components/share/Scroll';
 import Footer from './Footer';
+import ReactHtmlParser, { Transform } from 'react-html-parser';
+import css from 'highlight.js/lib/languages/css';
+import js from 'highlight.js/lib/languages/javascript';
+import ts from 'highlight.js/lib/languages/typescript';
+import html from 'highlight.js/lib/languages/xml';
+import bash from 'highlight.js/lib/languages/bash';
+
+import { createLowlight } from 'lowlight';
+import { toHtml } from 'hast-util-to-html';
 
 const supabase = createClient();
+
+const lowlight = createLowlight();
+
+lowlight.register({ html });
+lowlight.register({ css });
+lowlight.register({ js });
+lowlight.register({ ts });
+lowlight.register({ bash });
 
 const PostPage: FC<PostType> = ({
   id,
@@ -56,6 +73,20 @@ const PostPage: FC<PostType> = ({
     })();
   }, []);
 
+  const transform: Transform = (node, index) => {
+    if (node.type === 'tag' && node.name === 'pre') {
+      const code = node.children?.[0]?.children?.[0]?.data ?? '';
+      const highlightedCode = lowlight.highlightAuto(code);
+      console.log(highlightedCode);
+      return (
+        <pre
+          key={index}
+          dangerouslySetInnerHTML={{ __html: toHtml(highlightedCode) }}
+        />
+      );
+    }
+  };
+
   return (
     <>
       <Header />
@@ -89,7 +120,7 @@ const PostPage: FC<PostType> = ({
         </div>
 
         <div className="mx-auto w-full max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
-          <div dangerouslySetInnerHTML={{ __html: content ?? '' }} />
+          <div>{ReactHtmlParser(content ?? '', { transform })}</div>
           <Footer
             id={id}
             isAuthenticated={isAuthenticated}

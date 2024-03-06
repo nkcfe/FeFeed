@@ -21,8 +21,21 @@ import { Image as TiptapImage } from '@tiptap/extension-image';
 import WriteHeader from './WriteHeader';
 import Scroll from '@/components/share/Scroll';
 import ImageResize from 'tiptap-extension-resize-image';
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import css from 'highlight.js/lib/languages/css';
+import js from 'highlight.js/lib/languages/javascript';
+import ts from 'highlight.js/lib/languages/typescript';
+import html from 'highlight.js/lib/languages/xml';
+import { createLowlight } from 'lowlight';
 
 const supabase = createClient();
+
+const lowlight = createLowlight();
+
+lowlight.register({ html });
+lowlight.register({ css });
+lowlight.register({ js });
+lowlight.register({ ts });
 
 interface PostType {
   id?: number;
@@ -110,6 +123,9 @@ const WritePage = (props: PostType) => {
       StarterKit,
       TiptapImage,
       ImageResize,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
       Placeholder.configure({
         placeholder: '텍스트를 선택해 에디터를 사용해보세요.',
         showOnlyCurrent: false,
@@ -126,6 +142,7 @@ const WritePage = (props: PostType) => {
       },
     },
   });
+  console.log(editor?.getHTML());
 
   const handleSubmit = async () => {
     const title = titleRef.current?.value;

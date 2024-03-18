@@ -8,19 +8,27 @@ export async function GET(req: NextRequest) {
   const page = searchParams.get('page') as string;
   const limit = searchParams.get('limit') as string;
   const category = searchParams.get('category') as string;
+  const tag = searchParams.get('tag') as string;
 
   if (page) {
     const count = await prisma.post.count();
     const skipPage = parseInt(page) - 1;
+    const whereClause: any = {
+      category: category && category === 'ALL' ? {} : { contains: category },
+    };
+
+    // Check if tag is selected and not equal to 'ALL'
+    if (tag && tag !== 'ALL') {
+      whereClause.tags = { has: tag };
+    }
+
     const posts = await prisma.post.findMany({
       take: parseInt(limit),
       skip: skipPage * parseInt(limit),
       orderBy: {
         createdAt: 'desc',
       },
-      where: {
-        category: category && category === '전체' ? {} : { contains: category },
-      },
+      where: whereClause, // Apply the where clause
     });
 
     return NextResponse.json(

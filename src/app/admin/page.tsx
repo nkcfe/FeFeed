@@ -1,9 +1,8 @@
 import { createClient } from '@/libs/supabase/server';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
-import Header from '@/components/share/Header';
+import Dashboard from '../../components/admin/Dashboard';
+import Login from '../../components/admin/Login';
 
 export default async function Admin() {
   const supabase = createClient(cookies());

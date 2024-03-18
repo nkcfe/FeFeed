@@ -1,4 +1,4 @@
-import WritePage from '@/app/write/components/WritePage';
+import WritePage from '@/components/write/WritePage';
 import { getPost } from '@/utils/fetch';
 import { notFound } from 'next/navigation';
 

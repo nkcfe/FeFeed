@@ -2,12 +2,11 @@
 import React, { useRef, useState } from 'react';
 
 import Input from '@/components/share/Input';
-import Button from '@/components/share/Button';
+import { Button } from '@/components/ui/button';
 import Tiptap from '@/components/share/editor/Editor';
 import CategorySelect from '@/components/share/category/CategorySelect';
 import TagSelect from '@/components/tag/TagSelect';
-import WriteHeader from './WriteHeader';
-import Scroll from '@/components/share/Scroll';
+import WriteHeader from './Header';
 
 import Image from 'next/image';
 
@@ -28,7 +27,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 import { lowlight } from '@/utils/lowlight';
-
+import Footer from './Footer';
 
 const supabase = createClient();
 
@@ -41,7 +40,6 @@ interface PostType {
   category?: string;
   tags?: string[];
   createdAt?: Date;
-  isEdit?: boolean;
 }
 
 const WritePage = (props: PostType) => {
@@ -53,14 +51,13 @@ const WritePage = (props: PostType) => {
     content,
     category: cat,
     tags,
-    isEdit,
   } = props;
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
 
   const [image, setImage] = useState<string>(
     coverImage ||
-      'https://saryetgujpylhqlvyyek.supabase.co/storage/v1/object/public/images/dylan-nolte-SH_IjrKwG8c-unsplash.jpg',
+      'https://saryetgujpylhqlvyyek.supabase.co/storage/v1/object/public/images/europeana-41Wjp_3noHo-unsplash.jpg',
   );
   const [category, setCategory] = useState<string>(cat || '');
   const [selectedTags, setSelectedTags] = useState<string[]>(tags || []);
@@ -90,7 +87,7 @@ const WritePage = (props: PostType) => {
       }
       const currentTime = new Date().toISOString();
       const fileName = `${currentTime}_${file.name}`;
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('images')
         .upload(fileName, file);
 
@@ -110,12 +107,9 @@ const WritePage = (props: PostType) => {
     input.addEventListener('change', changeHandler);
   };
 
-
-
   const editor = useEditor({
     content: content || '',
     extensions: [
-      
       StarterKit,
       TiptapImage,
       ImageResize,
@@ -138,7 +132,6 @@ const WritePage = (props: PostType) => {
       },
     },
   });
-
 
   const handleSubmit = async () => {
     const title = titleRef.current?.value;
@@ -246,53 +239,49 @@ const WritePage = (props: PostType) => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-white dark:bg-neutral-800">
-      <WriteHeader
-        handleSubmit={handleSubmit}
-        isEdit={isEdit}
-        handleUpdate={handleUpdate}
-      />
-      <Scroll />
-      <div className="relative mt-14">
-        <Image
-          src={image}
-          alt="image"
-          width={600}
-          height={300}
-          className="h-[300px] w-full object-cover shadow-sm"
-        />
-        <Button
-          variant="gray"
-          shape="primary"
-          size="medium"
-          custom="absolute bottom-4 right-4 z-10"
-          onClick={(e) => uploadFileHandler(e)}
-        >
-          이미지 변경
-        </Button>
-      </div>
-      <div className="mx-auto mt-10 flex max-w-sm flex-col items-start justify-start gap-4 bg-transparent sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
-        <Input
-          ref={titleRef}
-          placeholder="제목을 입력해주세요"
-          className="w-full bg-transparent text-3xl font-semibold dark:text-white"
-          defaultValue={title}
-        />
-        <Input
-          ref={descriptionRef}
-          placeholder="설명을 입력해주세요"
-          className="w-full bg-transparent text-base text-gray-500 dark:text-white"
-          defaultValue={description}
-        />
-        <CategorySelect selectCategory={selectCategory} category={category} />
-        <TagSelect
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
-        />
+    <>
+      <WriteHeader editor={editor} />
+      <div className="flex min-h-[calc(100vh-3.5rem)] w-full flex-col items-center justify-start bg-white dark:bg-neutral-800">
+        <div className="relative mt-14 flex w-full max-w-4xl items-center justify-center">
+          <Image
+            src={image}
+            alt="image"
+            width={400}
+            height={300}
+            className="m-0 h-[300px] w-full rounded-xl object-cover shadow-sm"
+          />
+          <Button
+            variant="secondary"
+            custom="absolute bottom-4 right-4 z-10 p-1 px-2"
+            onClick={(e) => uploadFileHandler(e)}
+          >
+            이미지 변경
+          </Button>
+        </div>
+        <div className="mt-10 flex w-full max-w-sm flex-col items-start justify-start gap-4 bg-transparent sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
+          <Input
+            ref={titleRef}
+            placeholder="제목을 입력해주세요"
+            className="h-14 w-full bg-transparent text-4xl font-semibold dark:text-white"
+            defaultValue={title}
+          />
+          <Input
+            ref={descriptionRef}
+            placeholder="설명을 입력해주세요"
+            className="w-full bg-transparent text-base text-gray-500 dark:text-white"
+            defaultValue={description}
+          />
+          <CategorySelect selectCategory={selectCategory} category={category} />
+          <TagSelect
+            selectedTags={selectedTags}
+            setSelectedTags={setSelectedTags}
+          />
 
-        <Tiptap editor={editor} />
+          <Tiptap editor={editor} />
+        </div>
+        <Footer handleUpdate={handleUpdate} handleSubmit={handleSubmit} />
       </div>
-    </div>
+    </>
   );
 };
 

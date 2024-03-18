@@ -21,11 +21,11 @@ const IconButton = <Component extends ElementType = 'button'>({
   return createElement(
     component ?? 'button',
     {
-      className: cn('p-2', className),
+      className: cn('p-1.5 lg:p-2', className),
       'data-cy': props.label,
       ...props,
     },
-    <Icon className={cn('size-4 transition-all lg:size-5', iconClassName)} />,
+    <Icon className={cn('size-5 transition-all lg:size-6', iconClassName)} />,
   );
 };
 

@@ -1,8 +1,16 @@
-import { getCategories, getPosts } from '@/utils/fetch';
-import PostList from './components/PostList';
+import { getCategories, getPosts, getTags } from '@/utils/fetch';
+import PostList from '../../components/main/PostList';
 
 export default async function Home() {
   const posts = await getPosts({});
   const categories = await getCategories();
-  return <PostList initialPosts={posts} initialCategories={categories} />;
+  const tags = await getTags();
+
+  return (
+    <PostList
+      initialPosts={posts}
+      initialCategories={categories}
+      initialTags={tags}
+    />
+  );
 }

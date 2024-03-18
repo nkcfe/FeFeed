@@ -1,7 +1,7 @@
 import prisma from '@/libs/prismadb';
 import { getPost } from '@/utils/fetch';
 import { notFound } from 'next/navigation';
-import PostPage from './components/Postpage';
+import PostPage from '../../../components/post/Postpage';
 import { Metadata } from 'next';
 
 interface PostProps {

@@ -4,9 +4,14 @@ import axios from 'axios';
 import { cache } from 'react';
 
 const fetchPosts = cache(
-  async (pageParam: number, selectedCategory: string) => {
+  async (pageParam: number, selectedCategory: string, selectedTag: string) => {
     const response = await axios.get(`/api/posts?page=${pageParam}`, {
-      params: { page: pageParam, limit: 12, category: selectedCategory },
+      params: {
+        page: pageParam,
+        limit: 12,
+        category: selectedCategory,
+        tag: selectedTag,
+      },
     });
     return response.data;
   },
@@ -14,11 +19,13 @@ const fetchPosts = cache(
 
 export const useGetPosts = (
   selectedCategory: string,
+  selectedTag: string,
   initialPosts: { data: PostType[]; page: number } | null,
 ) =>
   useInfiniteQuery({
     queryKey: ['posts'],
-    queryFn: ({ pageParam }) => fetchPosts(pageParam, selectedCategory),
+    queryFn: ({ pageParam }) =>
+      fetchPosts(pageParam, selectedCategory, selectedTag),
     initialData: !!initialPosts
       ? { pages: [initialPosts], pageParams: [1] }
       : undefined,

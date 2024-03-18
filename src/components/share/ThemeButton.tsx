@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/utils/style';
-
+import { useTheme } from 'next-themes';
 import { LuMoon, LuSun } from 'react-icons/lu';
 
 const ThemeButton = () => {
   const [isOn, setIsOn] = useState(false);
+  const { setTheme } = useTheme();
 
   const toggleSwitch = () => {
-    document.documentElement.classList.toggle('dark');
-    window.localStorage.setItem('theme', isOn ? 'light' : 'dark');
     setIsOn(!isOn);
+    setTheme(!isOn ? 'dark' : 'light');
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import IconButton from '../../../components/share/IconButton';
+import IconButton from '../../share/IconButton';
 import { IoMdArrowDropleft } from 'react-icons/io';
 import { IoMdArrowDropright } from 'react-icons/io';
 import { useQuery } from '@tanstack/react-query';
@@ -65,15 +65,15 @@ const Calendar = () => {
   };
 
   return (
-    <div className="flex w-96 flex-col rounded-xl p-6">
-      <div className="flex items-center justify-center dark:text-white">
+    <div className="flex flex-col rounded-xl">
+      <div className="flex items-center justify-center">
         <IconButton
           Icon={IoMdArrowDropleft}
           label="left"
           iconClassName="hover:text-blue-400 transition"
           onClick={handlePrevYear}
         />
-        <div className="text-lg font-bold">{year}</div>
+        <div className="font-semibold">{year}</div>
         <IconButton
           Icon={IoMdArrowDropright}
           label="right"
@@ -81,7 +81,7 @@ const Calendar = () => {
           onClick={handleNextYear}
         />
       </div>
-      <div className="mt-2 grid grid-cols-[repeat(26,minmax(0,1fr))] gap-1">
+      <div className="mt-2 grid grid-cols-[repeat(24,minmax(0,1fr))] gap-1">
         {isLoading
           ? calendar.map((month) =>
               month.map((date) => <DateBlock key={date} date={date} />),

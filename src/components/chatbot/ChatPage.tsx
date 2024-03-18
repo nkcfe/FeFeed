@@ -15,13 +15,13 @@ import { TbHttpDelete } from 'react-icons/tb';
 import { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import Message, { MessageProps } from '@/app/chatbot/components/Message';
+import Message, { MessageProps } from '@/components/chatbot/Message';
 import Input from '@/components/share/Input';
-import ChatBlank from '@/app/chatbot/components/ChatBlank';
-import Typing from '@/app/chatbot/components/Typing';
+import ChatBlank from '@/components/chatbot/ChatBlank';
+import Typing from '@/components/chatbot/Typing';
 import { toast } from 'react-toastify';
 import { PostType } from '@/module/type';
-import Header from '@/components/share/Header';
+import Header from './Header';
 
 const ChatPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -110,49 +110,52 @@ const ChatPage = () => {
   }, [messageParams]);
 
   return (
-    <div className="h-[calc(100vh-7.5rem)] overflow-scroll">
-      <div className=" mx-auto max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
-        {messagePropsList.length === 0 ? (
-          <div className="flex h-[calc(100vh-7.5rem)] justify-center">
-            <ChatBlank />
-          </div>
-        ) : (
-          <div className="mt-20 flex flex-1 flex-col items-start justify-start gap-4">
-            {messagePropsList.map((props, index) => (
-              <Message key={index} {...props} />
-            ))}
-            {isPending && <Typing />}
-          </div>
-        )}
-      </div>
+    <>
+      <Header />
+      <div className="h-[calc(100vh-7.5rem)] overflow-scroll">
+        <div className=" mx-auto max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
+          {messagePropsList.length === 0 ? (
+            <div className="flex h-[calc(100vh-7.5rem)] justify-center">
+              <ChatBlank />
+            </div>
+          ) : (
+            <div className="mt-24 flex flex-1 flex-col items-start justify-start gap-4">
+              {messagePropsList.map((props, index) => (
+                <Message key={index} {...props} />
+              ))}
+              {isPending && <Typing />}
+            </div>
+          )}
+        </div>
 
-      <div className="fixed bottom-10 left-[50%] w-full max-w-sm -translate-x-1/2 sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-center justify-center rounded-2xl border-gray-500 bg-gray-100 dark:bg-neutral-700"
-        >
-          <Input
-            ref={inputRef}
-            type="text"
-            className="mx-1 flex-1 bg-transparent p-4 text-sm text-gray-600 dark:text-gray-100"
-            placeholder="무엇이든 물어보세요!"
-          />
-          <IconButton
-            Icon={RiSendPlaneFill}
-            type="submit"
-            label="search"
-            className="m-1 rounded-xl bg-neutral-900 text-white transition hover:bg-neutral-700"
-          />
-          <IconButton
-            Icon={TbHttpDelete}
-            onClick={(e) => handleReset(e)}
-            type="reset"
-            label="search"
-            className="m-1 rounded-xl bg-neutral-900 text-white transition hover:bg-neutral-700"
-          />
-        </form>
+        <div className="fixed bottom-10 left-[50%] w-full max-w-sm -translate-x-1/2 sm:max-w-lg md:max-w-2xl lg:max-w-4xl">
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center justify-center rounded-2xl border-gray-500 bg-gray-100 dark:bg-neutral-700"
+          >
+            <Input
+              ref={inputRef}
+              type="text"
+              className="mx-1 flex-1 bg-transparent p-4 text-sm text-gray-600 dark:text-gray-100"
+              placeholder="무엇이든 물어보세요!"
+            />
+            <IconButton
+              Icon={RiSendPlaneFill}
+              type="submit"
+              label="search"
+              className="m-1 rounded-xl bg-neutral-900 text-white transition hover:bg-neutral-700"
+            />
+            <IconButton
+              Icon={TbHttpDelete}
+              onClick={(e) => handleReset(e)}
+              type="reset"
+              label="search"
+              className="m-1 rounded-xl bg-neutral-900 text-white transition hover:bg-neutral-700"
+            />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -20,5 +20,5 @@ export const generateStaticParams = async () => {
 export default async function EditPage({ params }: PostProps) {
   const post = await getPost(params.id);
   if (!post) return notFound();
-  return <WritePage {...post} isEdit={true} />;
+  return <WritePage {...post} />;
 }
